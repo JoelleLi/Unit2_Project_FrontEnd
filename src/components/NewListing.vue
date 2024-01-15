@@ -6,9 +6,10 @@ const { fetchData, userEmail } = defineProps(["fetchData", "userEmail"])
 const listing = ref({
     name: "",
     location: "",
-    /*-----------*/
-    userEmail: userEmail
-    /*-----------*/
+    address: "",
+    userEmail: userEmail,
+    image: ""
+    // image: { url: "" }
 })
 
 function addListing(e) {
@@ -34,11 +35,13 @@ function addListing(e) {
         listing.value = {
             name: "",
             location: "",
-            /*-----------*/
-            userEmail: userEmail
-            /*-----------*/       
+            address: "",
+            userEmail: userEmail,
+            image: "",
         }
         console.log(res)
+        console.log(listing.value.userEmail)
+
         fetchData()
         clearForm()
     })
@@ -48,7 +51,9 @@ function addListing(e) {
 function clearForm() {
     listing.value = {
         name: "",
-        location: ""
+        location: "",
+        address: "",
+        image: ""
     }
 }
 
@@ -61,6 +66,10 @@ function clearForm() {
         <input type="text" name="name" placeholder="Name" v-model="listing.name" required>
         <label for="location">Location: *</label>
         <input type="text" name="location" placeholder="Location" v-model="listing.location" required>
+        <label for="address">Address: *</label>
+        <input type="text" name="address" placeholder="Address" v-model="listing.address" required>
+        <label for="image">Image URL *</label>
+        <input type="text" name="image" placeholder="Image" v-model="listing.image" required>
         <button @click="addListing">Add Listing</button>
     </div>
 </template>

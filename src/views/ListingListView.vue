@@ -6,9 +6,6 @@ import { useCookies } from "vue3-cookies"
 import { decodeCredential } from "vue3-google-login"
 const { cookies } = useCookies()
 
-/*-----------*/
-/*-----------*/
-
 const isLoggedIn = ref(false)
 let userName = ""
 const userEmail = ref("")
@@ -47,11 +44,8 @@ onMounted(() => {
   <ul>
     <li v-for="listing in listingsBe" :key="listing._id">
       <RouterLink :to="'/listings/' + listing._id">{{ listing.name }}</RouterLink> &nbsp;
-      <!-- <button @click="deleteListing(listing._id)">Delete Listing</button> &nbsp;  -->
-      <!-- <RouterLink :to="'/listings/update/' + listing._id">Edit Listing</RouterLink> -->
     </li>
   </ul>
   <hr>
-  <!-- <NewListing :fetchData="fetchData"/> -->
   <NewListing v-if="isLoggedIn" :fetchData="fetchData" :userEmail="userEmail"/>
 </template>
