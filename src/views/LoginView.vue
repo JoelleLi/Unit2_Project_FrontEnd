@@ -9,6 +9,7 @@ const { cookies } = useCookies()
 let isLoggedIn = ref(false)
 let userName = ""
 
+
 // function that will run if google login is successful
 const callback =  (response) => {
     isLoggedIn.value = true

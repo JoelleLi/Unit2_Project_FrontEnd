@@ -6,9 +6,12 @@ import { useCookies } from "vue3-cookies"
 import { decodeCredential } from "vue3-google-login"
 const { cookies } = useCookies()
 
+/*-----------*/
+/*-----------*/
+
 const isLoggedIn = ref(false)
 let userName = ""
-
+const userEmail = ref("")
 const listingsBe = ref([])
 
 const fetchData = () => {
@@ -19,22 +22,16 @@ const fetchData = () => {
     } )
 }
 
-function deleteListing(listingId) {
-  fetch(`${import.meta.env.VITE_API_URL}/listings/${listingId}`, {
-        method: "DELETE"
-    })
-    .then(() => {
-        alert("Listing deleted")
-        fetchData()
-    })
-    .catch(err => console.error(err))
-}
-
 const checkSession = () => {
-   if( cookies.isKey("user_session") ) {
-       isLoggedIn.value = true
-       const userData = decodeCredential(cookies.get("user_session"))
-       userName = userData.given_name
+  if( cookies.isKey("user_session") ) {
+    isLoggedIn.value = true
+    const userData = decodeCredential(cookies.get("user_session"))
+    userName = userData.given_name
+    console.log(userData)
+
+    console.log(userData.email)
+    userEmail.value = userData.email
+
    }
 }
 
@@ -50,11 +47,11 @@ onMounted(() => {
   <ul>
     <li v-for="listing in listingsBe" :key="listing._id">
       <RouterLink :to="'/listings/' + listing._id">{{ listing.name }}</RouterLink> &nbsp;
-      <button @click="deleteListing(listing._id)">Delete Listing</button> &nbsp; 
-      <RouterLink :to="'/listings/update/' + listing._id">Edit Listing</RouterLink>
+      <!-- <button @click="deleteListing(listing._id)">Delete Listing</button> &nbsp;  -->
+      <!-- <RouterLink :to="'/listings/update/' + listing._id">Edit Listing</RouterLink> -->
     </li>
   </ul>
   <hr>
-  <NewListing :fetchData="fetchData"/>
-  <!-- <NewListing v-if="isLoggedIn" :fetchData="fetchData"/> -->
+  <!-- <NewListing :fetchData="fetchData"/> -->
+  <NewListing v-if="isLoggedIn" :fetchData="fetchData" :userEmail="userEmail"/>
 </template>

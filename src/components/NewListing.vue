@@ -1,11 +1,14 @@
 <script setup>
-import { defineProps, ref } from "vue"
-
-const { fetchData } = defineProps(["fetchData"])
-
+import { ref } from "vue"
+/*-----------*/
+const { fetchData, userEmail } = defineProps(["fetchData", "userEmail"])
+/*-----------*/
 const listing = ref({
     name: "",
-    location: ""
+    location: "",
+    /*-----------*/
+    userEmail: userEmail
+    /*-----------*/
 })
 
 function addListing(e) {
@@ -14,17 +17,26 @@ function addListing(e) {
         alert("All values are required")
         return
     }
+    listing.value.userEmail = userEmail
+    console.log(listing.value)
+
     fetch(`${import.meta.env.VITE_API_URL}/listings/add`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(listing.value)
+        // body: JSON.stringify(newListing)
+
     })
     .then(res => {
+        console.log(userEmail)
         listing.value = {
             name: "",
-            location: ""
+            location: "",
+            /*-----------*/
+            userEmail: userEmail
+            /*-----------*/       
         }
         console.log(res)
         fetchData()
