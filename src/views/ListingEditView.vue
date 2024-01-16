@@ -8,16 +8,22 @@ const listingId = route.params.id
 
 const listing = ref({
     name: "",
-    location: ""
+    location: "",
+    address: "",
+    image: ""
 })
 
 const LoadListingData = () => {
+    console.log(listing.value)
+
     fetch(`${import.meta.env.VITE_API_URL}/listings/${listingId}`)
     .then(res => res.json())
     .then(data => {
         listing.value = {
             name: data.name,
             location: data.location,
+            address: data.address,
+            image: data.image
         }
     })
 }
@@ -35,7 +41,6 @@ const updateListing = () => {
     })
     .catch(err => console.error(err))
 }
-
 onMounted(LoadListingData)
 
 </script>
@@ -47,6 +52,10 @@ onMounted(LoadListingData)
         <input type="text" name="name" placeholder="Name" v-model="listing.name" required>
         <label for="location">Location: *</label>
         <input type="text" name="location" placeholder="Location" v-model="listing.location" required>
+        <label for="address">Address: *</label>
+        <input type="text" name="address" placeholder="Address" v-model="listing.address" required>
+        <label for="image">Image URL: *</label>
+        <input type="text" name="image" placeholder="Image" v-model="listing.image" required>
         <button @click="updateListing">Update Listing</button>
     </div>
 </template>

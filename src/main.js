@@ -1,5 +1,3 @@
-// import './assets/main.css'
-
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
@@ -7,6 +5,7 @@ import App from './App.vue'
 import router from './router'
 import vue3GoogleLogin from "vue3-google-login"
 import VueCookies from "vue3-cookies"
+import "./assets/main.css"
 
 const app = createApp(App)
 

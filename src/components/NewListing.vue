@@ -8,8 +8,8 @@ const listing = ref({
     location: "",
     address: "",
     userEmail: userEmail,
-    image: ""
-    // image: { url: "" }
+    image: "",
+    images: [""]
 })
 
 function addListing(e) {
@@ -38,6 +38,7 @@ function addListing(e) {
             address: "",
             userEmail: userEmail,
             image: "",
+            images: [""]
         }
         console.log(res)
         console.log(listing.value.userEmail)
@@ -53,7 +54,8 @@ function clearForm() {
         name: "",
         location: "",
         address: "",
-        image: ""
+        image: "",
+        images: [""]
     }
 }
 
@@ -69,7 +71,10 @@ function clearForm() {
         <label for="address">Address: *</label>
         <input type="text" name="address" placeholder="Address" v-model="listing.address" required>
         <label for="image">Image URL *</label>
-        <input type="text" name="image" placeholder="Image" v-model="listing.image" required>
+        <input type="text" name="image" placeholder="Image URL" v-model="listing.image" required>
+        <label for="image">Images URLs *</label>
+        <!-- <input type="text" name="images" placeholder="Images URLs" v-model="listing.images" required> -->
+        <textarea name="images" placeholder="Enter image URLs, each on a new line" v-model="listing.images" required></textarea>
         <button @click="addListing">Add Listing</button>
     </div>
 </template>

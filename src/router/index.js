@@ -4,6 +4,7 @@ import ListingListView from "../views/ListingListView.vue"
 import SingleListingView from "../views/SingleListingView.vue"
 import ListingEditView from "../views/ListingEditView.vue"
 import LoginView from "@/views/LoginView.vue"
+import MyListingListView from "@/views/MyListingListView.vue"
 
 
 const router = createRouter({
@@ -28,6 +29,11 @@ const router = createRouter({
       path: "/listings/update/:id",
       name: "editlisting",
       component: ListingEditView
+    },
+    {
+      path: '/mylistings',
+      name: 'mylistings',
+      component: MyListingListView
     },
     {
       path: "/login",

@@ -16,7 +16,7 @@ const userEmail = ref("")
 let userName = ""
 const isCreator = ref(false)
 const listingImage = ref(false)
-
+const listingImages = ref(false)
 
 
 onMounted(() => {
@@ -28,11 +28,12 @@ onMounted(() => {
     .then(response => response.json())
     .then( result => {
         listing.value = result
-        console.log(listing.value)
-        console.log(listing.value.image.url)
+        console.log(listing.value.image)
         checkImage()
 
         checkCreator()
+        console.log(listing.value)
+
     })
     .catch(err => console.error(err))
 })
@@ -72,27 +73,15 @@ const checkSession = () => {
    }
 }
 
-// const checkCreator = () => {
-//     const userData = decodeCredential(cookies.get("user_session"))
-//     console.log(listing.value.user.userEmail)
-//     console.log(userData.email)
-
-//     if (userData.email === listing.value.user.userEmail) {
-//         console.log("true")
-//         return true
-//     } else {
-//         console.log("false")
-//         return false
-//     }
-// }
-
 const checkImage = () => {
-    listingImage.value = listing.value.image.url
+    listingImage.value = listing.value.image
+    listingImages.value = listing.value.images
 }
 
 const checkCreator = () => {
     const userData = decodeCredential(cookies.get("user_session"))
     isCreator.value = userData.email === listing.value.user.userEmail
+    console.log(listing.value.user.userEmail)
 }
 
 </script>
@@ -100,8 +89,14 @@ const checkCreator = () => {
 <template>
     <h1>{{ listing.name }}</h1>
     <h4>{{ listing.location }}</h4>
-    <h4>{{ listing.userEmail }}</h4>
-    <img v-if="listingImage" :src="listingImage" alt="Listing Image" width="500"/>
+    <!-- <img v-if="listingImage" :src="listingImage" alt="Listing Image" width="500"/> -->
+    <img v-if="listingImage" :src="listing.image" :alt="listingImage" width="300px">
+    <div class="imageGallery">
+        <h3>Image Gallery</h3>
+        <div v-for="(image, index) in listing.images" :key="index">
+        <img :src="image" :alt="`Image ${index + 1}`" width="300px">
+    </div>
+    </div>
     <div v-if="isCreator">
         <RouterLink :to="'/listings/update/' + listing._id">Edit Listing</RouterLink>
     </div>
