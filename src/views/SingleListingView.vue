@@ -6,7 +6,6 @@ import { useCookies } from "vue3-cookies"
 import { decodeCredential } from "vue3-google-login"
 const { cookies } = useCookies()
 
-
 const router = useRouter()
 
 const listing = ref({})
@@ -15,9 +14,11 @@ const isLoggedIn = ref(false)
 const userEmail = ref("")
 let userName = ""
 const isCreator = ref(false)
+const isPublic = ref(false)
+const isPrivate = ref(false)
 const listingImage = ref(false)
 const listingImages = ref(false)
-
+const photosId = ref("")
 
 onMounted(() => {
     checkSession()
@@ -28,12 +29,10 @@ onMounted(() => {
     .then(response => response.json())
     .then( result => {
         listing.value = result
-        console.log(listing.value.image)
         checkImage()
-
+        // checkPhoto()
         checkCreator()
-        console.log(listing.value)
-
+        checkPublicOrPrivate()
     })
     .catch(err => console.error(err))
 })
@@ -78,18 +77,37 @@ const checkImage = () => {
     listingImages.value = listing.value.images
 }
 
+// const checkPhoto = () => {
+//     const photos = listing.value.photos[0].photos;
+//     console.log(photos)
+
+//     for (const photo of photos) {
+//     console.log(photo)
+//     console.log(listing.value.photos[0]._id)
+//     const photosId = listing.value.photos[0]._id
+//     console.log(photosId)
+// }
+// }
+
 const checkCreator = () => {
     const userData = decodeCredential(cookies.get("user_session"))
     isCreator.value = userData.email === listing.value.user.userEmail
     console.log(listing.value.user.userEmail)
 }
 
+const checkPublicOrPrivate = () => {
+    isPublic.value = listing.value.public
+    isPrivate.value = listing.value.private
+}
+
 </script>
 
 <template>
     <h1>{{ listing.name }}</h1>
-    <h4>{{ listing.location }}</h4>
-    <!-- <img v-if="listingImage" :src="listingImage" alt="Listing Image" width="500"/> -->
+    <h4>{{ listing.city }}</h4>
+    <h5 v-if="isPublic">Public Listing</h5>
+    <h5 v-if="isPrivate">Private Listing</h5>
+
     <img v-if="listingImage" :src="listing.image" :alt="listingImage" width="300px">
     <div class="imageGallery">
         <h3>Image Gallery</h3>
@@ -97,12 +115,25 @@ const checkCreator = () => {
         <img :src="image" :alt="`Image ${index + 1}`" width="300px">
     </div>
     </div>
+
+    <div class="userImageGallery">
+    <h3>User Image Gallery</h3>
+        <div v-for="(photoGroup, groupIndex) in listing.photos" :key="groupIndex">
+            <div v-for="(photo, photoIndex) in photoGroup.photos" :key="photoIndex">
+                <img :src="photo" :alt="`Photo ${groupIndex + 1}-${photoIndex + 1}`" width="300px">
+            </div>
+        </div>
+    </div>  
+
     <div v-if="isCreator">
         <RouterLink :to="'/listings/update/' + listing._id">Edit Listing</RouterLink>
     </div>
     <button v-if="isCreator" @click="deleteListing(listing._id)">Delete Listing</button> &nbsp; 
+    <div v-if="isLoggedIn">
+        <RouterLink :to="'/listings/' + listing._id + '/photos/'">Add Photos of Your Shoots</RouterLink> &nbsp; 
+    </div>
     <div>
-        <iframe
+    <iframe
       :src="`https://maps.google.com/maps?output=embed&q=${listing.address}`"
       width="500"
       height="400"

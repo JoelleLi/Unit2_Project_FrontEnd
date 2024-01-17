@@ -1,7 +1,33 @@
 .navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around !important;
+  font-size: 30px;
+}
+
+.listingForm {
+  display: flex;
+  flex-direction: column;
   font-size: 20px;
+}
+
+.image-form{
+  display: flex;
+  flex-direction: column;
 }
 
 .Login {
   color: red !important;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.listing-container {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 2;
 }

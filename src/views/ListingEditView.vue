@@ -8,9 +8,13 @@ const listingId = route.params.id
 
 const listing = ref({
     name: "",
-    location: "",
+    city: "",
     address: "",
-    image: ""
+    image: "",
+    images: [""],
+    public: "",
+    private: "",
+    contactInfo: ""
 })
 
 const LoadListingData = () => {
@@ -21,9 +25,13 @@ const LoadListingData = () => {
     .then(data => {
         listing.value = {
             name: data.name,
-            location: data.location,
+            city: data.city,
             address: data.address,
-            image: data.image
+            image: data.image,
+            images: data.images || [],
+            public: data.public,
+            private: data.private,
+            contactInfo: data.contactInfo
         }
     })
 }
@@ -43,6 +51,14 @@ const updateListing = () => {
 }
 onMounted(LoadListingData)
 
+const addImage = () => {
+    listing.value.images.push(''); // Add a new empty string for a new image
+}
+
+const removeImage = (index) => {
+    listing.value.images.splice(index, 1); // Remove the image at the specified index
+}
+
 </script>
 
 <template>
@@ -50,12 +66,32 @@ onMounted(LoadListingData)
     <div class="listingForm">
         <label for="name">Name: *</label>
         <input type="text" name="name" placeholder="Name" v-model="listing.name" required>
-        <label for="location">Location: *</label>
-        <input type="text" name="location" placeholder="Location" v-model="listing.location" required>
+        
+        <label for="location">City: *</label>
+        <input type="text" name="city" placeholder="City" v-model="listing.city" required>
+        
         <label for="address">Address: *</label>
         <input type="text" name="address" placeholder="Address" v-model="listing.address" required>
+
+        <label for="public">Public?</label>
+        <input type="checkbox" name="public" v-model="listing.public">
+
+        <label for="private">Private?</label>
+        <input type="checkbox" name="private" v-model="listing.private">
+
+        <label for="contactInfo">Contact Info: *</label>
+        <input type="text" name="contactInfo" placeholder="ContactInfo" v-model="listing.contactInfo" required>
+        
         <label for="image">Image URL: *</label>
         <input type="text" name="image" placeholder="Image" v-model="listing.image" required>
+        
+        <label for="images">Images URLs:</label>
+        <div v-for="(image, index) in listing.images" :key="index">
+            <input type="text" :name="'image-' + index" v-model="listing.images[index]" placeholder="Image URL" required>
+            <button type="button" @click="removeImage(index)">Remove</button>
+        </div>
+        <button type="button" @click="addImage">Add Image</button>
+
         <button @click="updateListing">Update Listing</button>
     </div>
 </template>

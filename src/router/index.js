@@ -5,7 +5,9 @@ import SingleListingView from "../views/SingleListingView.vue"
 import ListingEditView from "../views/ListingEditView.vue"
 import LoginView from "@/views/LoginView.vue"
 import MyListingListView from "@/views/MyListingListView.vue"
-
+import CategoriesView from "@/views/CategoriesView.vue"
+import CategoriesCityView from "@/views/CategoriesCityView.vue"
+import AddPhotosView from "@/views/AddPhotosView.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +36,21 @@ const router = createRouter({
       path: '/mylistings',
       name: 'mylistings',
       component: MyListingListView
+    },
+    {
+      path: "/listings/:id/photos/",
+      name: "addphotos",
+      component: AddPhotosView
+    },
+    {
+      path: '/categories',
+      name: 'categories',
+      component: CategoriesView
+    },
+    {
+      path: '/categories/city/:city',
+      name: 'categoriescity',
+      component: CategoriesCityView
     },
     {
       path: "/login",

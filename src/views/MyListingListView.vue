@@ -1,39 +1,31 @@
 <script setup>
 import { ref, onMounted } from "vue"
-import { useRoute, RouterLink } from "vue-router"
+import { RouterLink } from "vue-router"
 import NewListing from "@/components/NewListing.vue"
 import { useCookies } from "vue3-cookies"
 import { decodeCredential } from "vue3-google-login"
 const { cookies } = useCookies()
 
-// const listing = ref({})
-const listing = ref({})
 const isLoggedIn = ref(false)
 let userName = ""
-const user = ref("")
 const userEmail = ref("")
 const listingsBe = ref([])
-// let isCreator = ref(false)
-// const listingImage = ref(false)
 
 onMounted(() => {
     checkSession()
 
     fetch(`${import.meta.env.VITE_API_URL}/listings/mylistings/${userEmail.value}`)
-    // fetch(`${import.meta.env.VITE_API_URL}/listings/${route.params.id}`)
 
     .then( response => response.json() )
     .then( result => {
-        // listing.value = result
         listingsBe.value = result
-        // checkCreator()
+        console.log(userEmail.value)
     })
     .catch(err => console.error(err))
 })
 
 const fetchData = () => {
     fetch(`${import.meta.env.VITE_API_URL}/listings`)
-    // fetch(`${import.meta.env.VITE_API_URL}/listings/${route.params.id}`)
 
     .then( response => response.json() )
     .then( result => {
@@ -55,31 +47,22 @@ const checkSession = () => {
    }
 }
 
-// const checkCreator = () => {
-//     const userData = decodeCredential(cookies.get("user_session"))
-//     for (let i = 0; i < listingsBe.value.length; i++) {
-//         console.log(listingsBe.value[i])
-//         listingsBe.value[i] = listing
-//         console.log(listing)
-//         console.log(listingsBe.value[i].user)
-//         console.log(userData.user)
-//         // if (userData.user === listingsBe.value[i].user) {
-//         // console.log("true")
-//         // isCreator.value = true
-//         // } else {
-//         // console.log("false")
-//         // isCreator.value = false
-//         // }
-//     }
-// }
-
 </script>
 
 <template>
   <h1>My Listings</h1>
   <ul>
     <li v-for="listing in listingsBe" :key="listing._id">
-      <RouterLink :to="'/listings/' + listing._id">{{ listing.name }}</RouterLink> &nbsp;
+      <RouterLink :to="'/listings/' + listing._id">
+        <div class="listing-container">
+          <div class="listing-image">
+            <img :src="listing.image" :alt="listing.name + ' Image'" width="300" height="300" />
+          </div>
+          <div class="listing-details">
+            <span>{{ listing.name }}</span>
+          </div>
+        </div>
+      </RouterLink> &nbsp;
     </li>
   </ul>
   <hr>
