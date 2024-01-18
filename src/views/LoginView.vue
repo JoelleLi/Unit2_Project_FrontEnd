@@ -29,6 +29,8 @@ const callback =  (response) => {
     })
     .then(() => {
         console.log("session saved")
+        window.location.reload()
+
     })
     .catch( err => console.error(err) )
 }
@@ -41,10 +43,19 @@ const checkSession = () => {
     }
 }
 
-const handleLogout = () => {
-    googleLogout()
+// const handleLogout = async () => {
+//     await googleLogout()
+//     cookies.remove("user_session")
+//     isLoggedIn.value = false
+// }
+const handleLogout = async () => {
+    await googleLogout()
     cookies.remove("user_session")
     isLoggedIn.value = false
+
+
+    // Reload the page to reset the application state
+    window.location.reload()
 }
 
 onMounted(checkSession)

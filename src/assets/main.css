@@ -1,8 +1,14 @@
+
 .navbar {
   display: flex;
   flex-direction: row;
+  font-weight: bold;
   justify-content: space-around !important;
   font-size: 30px;
+}
+
+body {
+  font-family: 'Unna', serif !important;
 }
 
 .listingForm {
@@ -25,9 +31,28 @@ ul {
 }
 
 .listing-container {
+  position: relative;
   color: black;
   display: flex;
   flex-direction: column;
   flex-basis: 100%;
   flex: 2;
+}
+
+.grid-wrapper {
+  align-content: center;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  margin: 0 auto;
+}
+
+.imageGallery {
+  align-content: center;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  margin: 0 auto;
 }

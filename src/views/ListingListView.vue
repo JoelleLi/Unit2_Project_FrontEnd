@@ -41,20 +41,20 @@ onMounted(() => {
 
 <template>
   <h1>All Listings</h1>
-  <ul>
-    <li v-for="listing in listingsBe" :key="listing._id">
+  <div class="grid-wrapper">
+    <div v-for="listing in listingsBe" :key="listing._id">
       <RouterLink :to="'/listings/' + listing._id">
         <div class="listing-container">
           <div class="listing-image">
-            <img :src="listing.image" :alt="listing.name + ' Image'" width="300" height="300" />
+            <img :src="listing.image" :alt="listing.name + ' Image'" width="200" />
           </div>
           <div class="listing-details">
             <span>{{ listing.name }}</span>
           </div>
         </div>
       </RouterLink> &nbsp;
-    </li>
-  </ul>
+    </div>
+  </div>
   <hr>
   <NewListing v-if="isLoggedIn" :fetchData="fetchData" :userEmail="userEmail"/>
 </template>

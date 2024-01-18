@@ -18,6 +18,7 @@ onMounted(() => {
 
     .then( response => response.json() )
     .then( result => {
+      console.log(listingsBe.value)
         listingsBe.value = result
         console.log(userEmail.value)
     })
@@ -51,8 +52,8 @@ const checkSession = () => {
 
 <template>
   <h1>My Listings</h1>
-  <ul>
-    <li v-for="listing in listingsBe" :key="listing._id">
+  <div class="grid-wrapper">
+    <div v-for="listing in listingsBe" :key="listing._id">
       <RouterLink :to="'/listings/' + listing._id">
         <div class="listing-container">
           <div class="listing-image">
@@ -63,7 +64,7 @@ const checkSession = () => {
           </div>
         </div>
       </RouterLink> &nbsp;
-    </li>
-  </ul>
+    </div>
+    </div>
   <hr>
   <NewListing v-if="isLoggedIn" :fetchData="fetchData" :userEmail="userEmail"/></template>

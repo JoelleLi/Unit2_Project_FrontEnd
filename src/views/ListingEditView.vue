@@ -5,6 +5,10 @@ import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
 const listingId = route.params.id
+const userEmail = ref("")
+const listingsBe = ref([])
+
+const photoId = ref("")
 
 const listing = ref({
     name: "",
@@ -12,14 +16,20 @@ const listing = ref({
     address: "",
     image: "",
     images: [""],
+    photos: [""],
     public: "",
     private: "",
-    contactInfo: ""
+    contactInfo: "",
+    description: "",
+    _id: ""
+})
+
+const photos = ref({
+    photos: [""],
+    userEmail: userEmail
 })
 
 const LoadListingData = () => {
-    console.log(listing.value)
-
     fetch(`${import.meta.env.VITE_API_URL}/listings/${listingId}`)
     .then(res => res.json())
     .then(data => {
@@ -29,9 +39,12 @@ const LoadListingData = () => {
             address: data.address,
             image: data.image,
             images: data.images || [],
+            photos: data.photos || [],
             public: data.public,
             private: data.private,
-            contactInfo: data.contactInfo
+            contactInfo: data.contactInfo,
+            description: data.description,
+            _id: data._id
         }
     })
 }
@@ -49,16 +62,43 @@ const updateListing = () => {
     })
     .catch(err => console.error(err))
 }
+
+function deletePhotos(groupIndex) {
+    const photoIdToDelete = listing.value.photos[groupIndex]._id
+    console.log(photoIdToDelete)
+    fetch(`${import.meta.env.VITE_API_URL}/listings/${listing.value._id}/photos/${photoIdToDelete}`, {
+        method: "DELETE"
+    })
+    .then(() => {
+        alert("Photos deleted")
+        fetchData()
+    })
+    .then(() => {
+        router.replace({ name: `editlisting` })
+    })
+    .then(() => {
+        window.location.reload()
+    })
+    .catch(err => console.error(err))
+}
+
 onMounted(LoadListingData)
 
 const addImage = () => {
-    listing.value.images.push(''); // Add a new empty string for a new image
+    listing.value.images.push('')
 }
 
 const removeImage = (index) => {
-    listing.value.images.splice(index, 1); // Remove the image at the specified index
+    listing.value.images.splice(index, 1)
 }
 
+const fetchData = () => {
+    fetch(`${import.meta.env.VITE_API_URL}/listings`)
+    .then( response => response.json() )
+    .then( result => {
+        listingsBe.value = result
+    } )
+}
 </script>
 
 <template>
@@ -79,8 +119,14 @@ const removeImage = (index) => {
         <label for="private">Private?</label>
         <input type="checkbox" name="private" v-model="listing.private">
 
-        <label for="contactInfo">Contact Info: *</label>
-        <input type="text" name="contactInfo" placeholder="ContactInfo" v-model="listing.contactInfo" required>
+        <label for="telephone">Telephone: *</label>
+        <input type="text" name="telephone" placeholder="Telephone" v-model="listing.telephone" required>
+        
+        <label for="email">Email: *</label>
+        <input type="text" name="email" placeholder="Email" v-model="listing.emailAddress" required>
+
+        <label for="description">Info: *</label>
+        <input type="text" name="description" placeholder="Add description/ rates/ accessibility" v-model="listing.description" required>
         
         <label for="image">Image URL: *</label>
         <input type="text" name="image" placeholder="Image" v-model="listing.image" required>
@@ -93,5 +139,15 @@ const removeImage = (index) => {
         <button type="button" @click="addImage">Add Image</button>
 
         <button @click="updateListing">Update Listing</button>
+
+        <label for="images">Edit User Image Gallery:</label>
+            <div v-for="(photoGroup, groupIndex) in listing.photos" :key="groupIndex">
+                <div v-for="(photo, photoIndex) in photoGroup.photos" :key="photoIndex">
+                    <img :src="photo" :alt="`Photo ${groupIndex + 1}-${photoIndex + 1}`" width="300px">
+                    <button type="button" @click="deletePhotos(groupIndex)">Delete</button>
+                </div>
+            </div>
+        <button @click="updatePhotos">Update Photo Gallery</button>
+
     </div>
 </template>

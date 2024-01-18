@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRoute } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { useCookies } from "vue3-cookies"
 import { decodeCredential } from "vue3-google-login"
 const { cookies } = useCookies()
@@ -9,6 +9,8 @@ const listing = ref({})
 const listingsBe = ref({})
 const userEmail = ref("")
 let userName = ""
+
+const router = useRouter()
 
 const photos = ref({
     photos: [""],
@@ -59,6 +61,9 @@ function addPhotos(e) {
 
         fetchData()
         clearForm()
+    })
+    .then(() => {
+        router.push(`/listings/${listing.value._id}`);
     })
     .catch(err => console.error(err))
 }

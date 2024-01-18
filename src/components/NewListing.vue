@@ -11,7 +11,10 @@ const listing = ref({
     image: "",
     images: [""],
     public: false,
-    private: false
+    private: false,
+    telephone: "",
+    emailAddress: "",
+    description: ""
 })
 
 const addImage = () => {
@@ -51,7 +54,10 @@ function addListing(e) {
             image: "",
             images: [""],
             public: "",
-            private: ""
+            private: "",
+            telephone: "",
+            emailAddress: "",
+            description: ""
         }
         console.log(res)
         console.log(listing.value.userEmail)
@@ -72,7 +78,10 @@ function clearForm() {
         image: "",
         images: [""],
         public: "",
-        private: ""
+        private: "",
+        telephone: "",
+        emailAddress: "",
+        description: ""
     }
 }
 
@@ -101,6 +110,15 @@ function clearForm() {
 
         <label for="private">Private?</label>
         <input type="checkbox" name="private" v-model="listing.private">
+
+        <label for="telephone">Telephone: *</label>
+        <input type="text" name="telephone" placeholder="Telephone" v-model="listing.telephone" required>
+        
+        <label for="email">Email: *</label>
+        <input type="text" name="email" placeholder="Email" v-model="listing.emailAddress" required>
+
+        <label for="description">Info: *</label>
+        <input type="text" name="description" placeholder="Add description/ rates/ accessibility" v-model="listing.description" required>
 
         <label for="image">Image URL *</label>
         <input type="text" name="image" placeholder="Image URL" v-model="listing.image" required>

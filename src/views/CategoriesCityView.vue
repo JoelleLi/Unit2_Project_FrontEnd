@@ -22,8 +22,8 @@ onMounted(() => {
 
 <template>
     <h1>{{ myCity }}</h1>
-    <ul>
-        <li v-for="listing in listingsBe" :key="listing._id">
+    <div class="grid-wrapper">
+        <div v-for="listing in listingsBe" :key="listing._id">
             <RouterLink :to="'/listings/' + listing._id">
                 <div class="listing-container">
                     <div class="listing-image">
@@ -36,7 +36,6 @@ onMounted(() => {
                     </div>
                 </div>
             </RouterLink> &nbsp;
-        </li>
-    </ul>
-
+        </div>
+    </div>
 </template>
