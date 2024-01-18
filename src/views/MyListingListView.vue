@@ -52,15 +52,21 @@ const checkSession = () => {
 
 <template>
   <h1>My Listings</h1>
-  <div class="grid-wrapper">
+  <div class="grid-wrapper-mylistings">
     <div v-for="listing in listingsBe" :key="listing._id">
       <RouterLink :to="'/listings/' + listing._id">
         <div class="listing-container">
           <div class="listing-image">
-            <img :src="listing.image" :alt="listing.name + ' Image'" width="300" height="300" />
+
+
+            <img class="listing-image" :src="listing.image" :alt="listing.name + ' Image'" width="300" height="300" />
+
+
+          
+
           </div>
-          <div class="listing-details">
-            <span>{{ listing.name }}</span>
+          <div>
+            <span class="listing-details-mylistings">{{ listing.name }}</span>
           </div>
         </div>
       </RouterLink> &nbsp;

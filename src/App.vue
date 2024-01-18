@@ -19,6 +19,13 @@ const checkSession = () => {
     console.log(userData.email)
 
     userEmail.value = userData.email
+
+    const myListingsLink = document.getElementById("mylistings-link")
+    myListingsLink.classList = "nav-link"
+
+    const logOutLink = document.getElementById("login")
+    logOutLink.innerText = "Log out"
+    console.log(logOutLink)
    }
 }
 
@@ -35,32 +42,40 @@ onMounted(checkSession)
 <header>
 
 <div class="container">
-  <div class="row">
-    <div class="col-12">
-      <h1>heading</h1>
+  <div class="row" id="header-bar">
+    <div class="col-2">
+      <h1 id="icon">shoot tracker</h1>    
+    </div>
+    <div class="col-10" id="login-link">
+      <RouterLink to="/login" id="login">Login</RouterLink>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-3">
-      <H1>TEST</H1>
+    <div class="col-md-2" id="nav-wrapper">
+      <nav class="navbar flex-column">
+        <a class="nav-link">
+          <RouterLink to="/" class="nav-text">Home</RouterLink>
+        </a> 
+        <a class="nav-link">
+          <RouterLink to="/categories" class="nav-text">Categories</RouterLink>
+        </a> 
+        <a class="nav-link">
+          <RouterLink to="/listings" class="nav-text">All Listings</RouterLink>
+        </a> 
+        <a class="nav-link disabled" id="mylistings-link">
+          <RouterLink to="/mylistings" class="nav-text">My Listings</RouterLink>
+        </a> 
+      </nav>    
     </div>
-    <div class="col-md-9">
-      <H1>TEST</H1>
+    <div class="col-md-10" id="main-content-wrapper">
+      <RouterView />
     </div>
   </div>
 </div>
-
     <div class="wrapper">
-      <nav class="navbar">
-        <RouterLink to="/login" class="Login">Login</RouterLink>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/categories">Categories</RouterLink>
-        <RouterLink to="/listings">All Listings</RouterLink>
-        <RouterLink v-if="isLoggedIn" to="/mylistings">My Listings</RouterLink>
-      </nav>
+
     </div>
 </header>
-  <RouterView />
 </template>
 
 

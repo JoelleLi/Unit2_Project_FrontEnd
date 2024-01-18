@@ -1,15 +1,51 @@
-
-.navbar {
-  display: flex;
-  flex-direction: row;
-  font-weight: bold;
-  justify-content: space-around !important;
-  font-size: 30px;
-}
-
+/*---------- MAIN WRAPPER ----------*/
 body {
   font-family: 'Unna', serif !important;
 }
+
+.container {
+  /* border: 1px solid black; */
+  margin: 100px;
+}
+
+#header-bar {
+  /* border: 1px solid black; */
+  font-size: 30px;
+  display: flex;
+}
+
+#icon {
+  font-size: 23px;
+  display: flex;
+  font-weight: bold;
+  justify-content: space-around;
+}
+
+#login-link {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#login {
+  color: black;
+  font-size: 20px;
+}
+
+#nav-wrapper {
+  align-items: center;
+  text-align: center;
+}
+
+.nav-text {
+  color: black;
+}
+
+#main-content-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/*---------- NEW LISTING ----------*/
 
 .listingForm {
   display: flex;
@@ -22,15 +58,17 @@ body {
   flex-direction: column;
 }
 
-.Login {
-  color: red !important;
-}
+/*---------- MAIN LISTINGS ----------*/
 
-ul {
-  list-style-type: none;
+.grid-wrapper-mainlistings {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  margin: 0 auto;
 }
 
 .listing-container {
+  text-align: center;
   position: relative;
   color: black;
   display: flex;
@@ -39,20 +77,43 @@ ul {
   flex: 2;
 }
 
-.grid-wrapper {
-  align-content: center;
+.listing-details-main {
+  display: flex;
+  margin: 0 auto;
+  text-align: center;
+  width: 200px;
+}
+
+.listing-image {
+  border-radius: 20px;
+  display: flex;
+  margin: 0 auto;
+}
+
+/*---------- MY LISTINGS ----------*/
+
+.grid-wrapper-mylistings {
   display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
   margin: 0 auto;
 }
 
+.listing-details-mylistings {
+  display: flex;
+  margin: 0 auto;
+  text-align: center;
+  width: 300px;
+}
+
+/*---------- SINGLE LISTINGS ----------*/
+
 .imageGallery {
   align-content: center;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
   margin: 0 auto;
 }
+
