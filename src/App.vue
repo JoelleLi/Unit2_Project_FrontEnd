@@ -20,8 +20,8 @@ const checkSession = () => {
 
     userEmail.value = userData.email
 
-    const myListingsLink = document.getElementById("mylistings-link")
-    myListingsLink.classList = "nav-link"
+    // const myListingsLink = document.getElementById("mylistings-link")
+    // myListingsLink.classList = "nav-link"
 
     const logOutLink = document.getElementById("login")
     logOutLink.innerText = "log out"
@@ -63,13 +63,22 @@ onMounted(checkSession)
         <a class="nav-link">
           <RouterLink to="/listings" class="nav-text">all listings</RouterLink>
         </a> 
-        <a class="nav-link disabled" id="mylistings-link">
+        <a class="nav-link" id="mylistings-link">
           <RouterLink to="/mylistings" class="nav-text">my listings</RouterLink>
+        </a> 
+        <a class="nav-link" id="newlisting-link">
+          <RouterLink to="/newlisting" class="nav-text">new listing</RouterLink>
         </a> 
       </nav> 
       </div>
     </div>
     <div class="col-md-10" id="main-content-wrapper">
+      <div class="row" id="header-bar-2">
+        <div class="col-12">
+          <h1>header</h1>
+        </div>
+      </div>
+      
       <RouterView />
     </div>
   </div>

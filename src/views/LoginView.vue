@@ -1,4 +1,5 @@
 <script setup>
+import router from "@/router";
 import { ref, onMounted } from "vue"
 import { useCookies } from "vue3-cookies"
 import { decodeCredential, googleLogout } from "vue3-google-login"
@@ -29,7 +30,8 @@ const callback =  (response) => {
     })
     .then(() => {
         console.log("session saved")
-        window.location.reload()
+        // window.location.reload()
+        router.push("/")
 
     })
     .catch( err => console.error(err) )

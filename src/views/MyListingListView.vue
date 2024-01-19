@@ -13,16 +13,19 @@ const listingsBe = ref([])
 
 onMounted(() => {
     checkSession()
+    if (isLoggedIn.value === true) {
+      fetch(`${import.meta.env.VITE_API_URL}/listings/mylistings/${userEmail.value}`)
 
-    fetch(`${import.meta.env.VITE_API_URL}/listings/mylistings/${userEmail.value}`)
-
-    .then( response => response.json() )
-    .then( result => {
-      console.log(listingsBe.value)
-        listingsBe.value = result
-        console.log(userEmail.value)
-    })
-    .catch(err => console.error(err))
+      .then( response => response.json() )
+      .then( result => {
+        console.log(listingsBe.value)
+          listingsBe.value = result
+          console.log(userEmail.value)
+      })
+      .catch(err => console.error(err))
+    } else {
+      return
+    }
 })
 
 const fetchData = () => {
@@ -51,19 +54,14 @@ const checkSession = () => {
 </script>
 
 <template>
-  <h1 class="page-title">my listings</h1>
-  <div class="grid-wrapper-mylistings">
+  <div v-if="!isLoggedIn">Sign in to view your listings</div>
+  <h1 v-if="isLoggedIn" class="page-title">my listings</h1>
+  <div v-if="isLoggedIn" class="grid-wrapper-mylistings">
     <div v-for="listing in listingsBe" :key="listing._id">
       <RouterLink :to="'/listings/' + listing._id">
         <div class="listing-container">
           <div class="listing-image">
-
-
             <img class="listing-image" :src="listing.image" :alt="listing.name + ' Image'" width="300" height="300" />
-
-
-          
-
           </div>
           <div>
             <span class="listing-details-mylistings">{{ listing.name }}</span>
@@ -71,6 +69,6 @@ const checkSession = () => {
         </div>
       </RouterLink> &nbsp;
     </div>
-    </div>
+  </div>
   <hr>
   <NewListing v-if="isLoggedIn" :fetchData="fetchData" :userEmail="userEmail"/></template>
