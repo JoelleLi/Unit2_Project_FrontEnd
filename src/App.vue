@@ -23,9 +23,8 @@ const checkSession = () => {
     // const myListingsLink = document.getElementById("mylistings-link")
     // myListingsLink.classList = "nav-link"
 
-    const logOutLink = document.getElementById("login")
-    logOutLink.innerText = "log out"
-    console.log(logOutLink)
+    // const logOutLink = document.getElementById("login")
+    // logOutLink.innerText = "Log Out"
    }
 }
 
@@ -38,7 +37,7 @@ onMounted(checkSession)
 <link rel="stylesheet" href="./assets/main.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unna&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
 <header>
 
 <div class="container">
@@ -49,29 +48,32 @@ onMounted(checkSession)
       <div class="nav-wrapper2">
         <div id="icon-wrapper" class="col-2">
           <img id="icon" src="./assets/images/shootfinder.png" alt="shootfinder logo">
+          <img src="./assets/images/shootfindericon.png" alt="shootfinder icon"
+          width="100px">
         </div>
         <nav class="navbar flex-column">
           <a class="nav-link">
-            <RouterLink to="/" class="nav-text">home</RouterLink>
+            <RouterLink to="/" class="nav-text">Home</RouterLink>
           </a> 
           <a class="nav-link">
-            <RouterLink to="/categories" class="nav-text">categories</RouterLink>
+            <RouterLink to="/categories" class="nav-text">Categories</RouterLink>
           </a> 
           <a class="nav-link">
-            <RouterLink to="/listings" class="nav-text">all listings</RouterLink>
+            <RouterLink to="/listings" class="nav-text">All Listings</RouterLink>
           </a> 
           <a class="nav-link" id="mylistings-link">
-            <RouterLink to="/mylistings" class="nav-text">my listings</RouterLink>
+            <RouterLink to="/mylistings" class="nav-text">My Listings</RouterLink>
           </a> 
           <a class="nav-link" id="newlisting-link">
-            <RouterLink to="/newlisting" class="nav-text">new listing</RouterLink>
+            <RouterLink to="/newlisting" class="nav-text">New Listing</RouterLink>
           </a> 
         </nav> 
       </div>
     </div>
     <div class="col-md-10 d-flex flex-column" id="main-content-wrapper">
       <div class="w-100 d-block" id="header-bar-wrapper">
-        <RouterLink to="/login" id="login">login</RouterLink>
+        <RouterLink to="/login" class="links" id="login">Login</RouterLink>
+        <!-- <div id="hello">Hello, {{ userName }}</div> -->
       </div>
       <div>
           <RouterView />

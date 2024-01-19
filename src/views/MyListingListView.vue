@@ -55,20 +55,23 @@ const checkSession = () => {
 
 <template>
   <div v-if="!isLoggedIn">Sign in to view your listings</div>
-  <h1 v-if="isLoggedIn" class="page-title">my listings</h1>
-  <div v-if="isLoggedIn" class="grid-wrapper-mylistings">
-    <div v-for="listing in listingsBe" :key="listing._id">
-      <RouterLink :to="'/listings/' + listing._id">
-        <div class="listing-container">
-          <div class="listing-image">
-            <img class="listing-image" :src="listing.image" :alt="listing.name + ' Image'" width="300" height="300" />
+  <div class="mylistings-wrapper">
+    <h3>My Listings</h3>
+    <div v-if="isLoggedIn" class="grid-wrapper-mylistings">
+      <div v-for="listing in listingsBe" :key="listing._id">
+        <RouterLink :to="'/listings/' + listing._id">
+          <div class="listing-container">
+            <div class="listing-image-wrapper">
+              <img class="listing-image" :src="listing.image" :alt="listing.name + ' Image'" width="250" height="250" />
+            </div>
+            <div>
+              <span class="listing-details-mylistings">{{ listing.name }}</span>
+            </div>
           </div>
-          <div>
-            <span class="listing-details-mylistings">{{ listing.name }}</span>
-          </div>
-        </div>
-      </RouterLink> &nbsp;
+        </RouterLink> &nbsp;
+      </div>
     </div>
   </div>
+
   <hr>
   <NewListing v-if="isLoggedIn" :fetchData="fetchData" :userEmail="userEmail"/></template>

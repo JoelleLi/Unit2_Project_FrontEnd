@@ -98,7 +98,7 @@ const checkSession = () => {
 </script>
 
 <template>
-    <h1>Add your photos for {{ listing.name }}</h1>
+    <h3>Add your photos for {{ listing.name }}</h3>
     <div class="listingForm">
 
         <div class="image-form">

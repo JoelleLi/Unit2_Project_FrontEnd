@@ -31,7 +31,7 @@ const callback =  (response) => {
     .then(() => {
         console.log("session saved")
         // window.location.reload()
-        router.push("/")
+        router.push("/login")
 
     })
     .catch( err => console.error(err) )
@@ -42,6 +42,8 @@ const checkSession = () => {
         isLoggedIn.value = true
         const userData = decodeCredential(cookies.get("user_session"))
         userName = userData.given_name
+        const loginText = document.getElementById("loginText")
+        loginText.innerText = "Log Out"
     }
 }
 
@@ -54,10 +56,11 @@ const handleLogout = async () => {
     await googleLogout()
     cookies.remove("user_session")
     isLoggedIn.value = false
-
-
+    const loginHeader = document.getElementById("login")
+    console.log(loginHeader)
     // Reload the page to reset the application state
     router.push("/")
+    loginHeader.innerText = "Log In"
 }
 
 onMounted(checkSession)
@@ -66,10 +69,12 @@ onMounted(checkSession)
 
 <template>
     <div class="login-page">
-        <h1>Login</h1>
+        <h3 id="loginText">Login</h3>
     <div v-if="isLoggedIn">
-        <h2>Hello {{ userName }}</h2>
-        <button @click="handleLogout">Log Out</button>
+        <h4>Hello, {{ userName }}</h4>
+        <a href="/newlisting">Start listing my locations</a>
+        <br>
+        <button class="button" @click="handleLogout">Log Out</button>
     </div>
     <div v-else>
         <GoogleLogin :callback="callback" />

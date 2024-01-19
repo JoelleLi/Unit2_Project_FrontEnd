@@ -1,8 +1,33 @@
 /*---------- MAIN WRAPPER ----------*/
 body {
   background-color: rgba(133, 176, 190, 0.16) !important;
-  font-family: 'Unna', serif !important;
+  font-family: 'Tenor Sans', sans-serif !important;  
   text-decoration: none !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.button {
+  border-radius: 10px;
+}
+
+.button:hover {
+  color: pink !important;
+}
+
+.city-links {
+  color: black !important;
+  list-style-type: none;
+}
+
+.links {
+  color: black;
+}
+
+.links:hover {
+  color: pink;
 }
 
 .container {
@@ -21,29 +46,25 @@ body {
 }
 
 #icon-wrapper {
+  align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  /* padding-top: 100px; */
-  padding-bottom: 50px;
+  padding-top: 80px;
+  /* padding-bottom: 50px; */
 }
 
 #icon {
   width: 200px;
-  /* padding-bottom: 10px; */
 }
 
 #header-bar-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  /* height: auto; */
-  /* margin-top: 100px; */
-  overflow-y:scroll;
-  overflow-x:hidden;
-  padding-top: 100px;
+  margin-top: 100px;
+  align-items: center;
+  display: flex !important;
+  flex-direction: row-reverse;
+
+  padding-right: 30px;
 }
 
 #login-link {
@@ -51,9 +72,18 @@ body {
   flex-direction: row-reverse;
 }
 
+#hello {
+  color: #064579;
+  font-size: 20px;
+}
+
 #login {
+  /* border: 1px solid pink; */
+  border-radius: 25px;
   color: black;
   font-size: 20px;
+  margin: 0 0 0 10px;
+  padding: 0 10px 0 10px;
 }
 
 #nav-wrapper {
@@ -97,6 +127,11 @@ body {
 
 .nav-text {
   color: black;
+  font-size: 20px;
+}
+
+.nav-text:hover {
+  text-decoration: pink underline !important;
 }
 
 #main-content-wrapper {
@@ -104,7 +139,13 @@ body {
   flex-direction: column;
 }
 
+
 /*---------- NEW LISTING ----------*/
+
+.form-container {
+  display: flex;
+  justify-content: center;
+}
 
 .listingForm {
   display: flex;
@@ -120,6 +161,12 @@ body {
 
 /*---------- MAIN LISTINGS ----------*/
 
+.mainlistings-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .grid-wrapper-mainlistings {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -127,9 +174,22 @@ body {
   margin: 0 auto;
 }
 
-@media screen and (max-width:1600px) {
+@media screen and (max-width:1200px) {
+  .grid-wrapper-mainlistings {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin: 30px
+  }
+
   .grid-wrapper-mylistings {
     grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .listing-description {
+    width: 600px !important;
+  }
+  .home-view {
+    width: 700px;
+    padding: 80px;
   }
 }
 
@@ -163,6 +223,12 @@ body {
 
 /*---------- MY LISTINGS ----------*/
 
+.mylistings-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .grid-wrapper-mylistings {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -177,10 +243,17 @@ body {
 .listing-details-mylistings {
   margin: 0 auto;
   text-align: center;
-  width: 300px;
+  width: 250px;
 }
 
 /*---------- SINGLE LISTINGS ----------*/
+
+.singlelisting-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 #primary-image-wrapper {
   margin: 0px auto;
   padding: 10px;
@@ -201,9 +274,19 @@ body {
   text-align: center;
 }
 
+.listing-description {
+  width: 800px;
+}
+
 #primary-image {
   border-radius: 25px;
   width: 40rem;
+}
+
+.gallery-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .image-gallery-header {
@@ -219,3 +302,8 @@ body {
   margin: 50px;
 }
 
+/*---------- CATEGORIES VIEW ----------*/
+
+.categories-wrapper {
+  margin: 50px;
+}

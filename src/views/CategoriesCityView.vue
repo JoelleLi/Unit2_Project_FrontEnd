@@ -21,8 +21,26 @@ onMounted(() => {
 </script>
 
 <template>
-    <h1>{{ myCity }}</h1>
-    <div class="grid-wrapper">
+    <h3>{{ myCity }}</h3>
+    <div class="grid-wrapper-mainlistings">
+        <div v-for="listing in listingsBe" :key="listing._id">
+            <RouterLink :to="'/listings/' + listing._id">
+            <div class="listing-container">
+                <div class="listing-image-wrapper">
+                    <img class="listing-image" :src="listing.image" :alt="listing.name + ' Image'" width="200" />
+                </div>
+                <div class="listing-details">
+                <span class="listing-details">
+                {{ listing.name }}
+                </span>
+            </div>
+            </div>
+                </RouterLink> &nbsp;
+        </div>
+    </div>
+    <hr>
+
+    <!-- <div class="grid-wrapper">
         <div v-for="listing in listingsBe" :key="listing._id">
             <RouterLink :to="'/listings/' + listing._id">
                 <div class="listing-container">
@@ -37,5 +55,5 @@ onMounted(() => {
                 </div>
             </RouterLink> &nbsp;
         </div>
-    </div>
+    </div> -->
 </template>

@@ -40,14 +40,18 @@ const uniqueCities = computed(() => {
 </script>
 
 <template>
-    <h6>Listings by City</h6>
-    <ul>
-        <li v-for="city in uniqueCities" :key="city">
-            <RouterLink :to="'/categories/city/' + encodeURIComponent(city)">{{ city }}</RouterLink> &nbsp;
-        </li>
-    </ul>
-    <RouterLink :to="'/categories/public/'">Public Listings</RouterLink>
-    <br>
-    <RouterLink :to="'/categories/private/'">Private Listings</RouterLink>
-
+    <div class="categories-wrapper">
+        <h3>Listings by City</h3>
+        <div v-for="city in uniqueCities" :key="city">
+            <RouterLink class="links" :to="'/categories/city/' + encodeURIComponent(city)">{{ city }}</RouterLink> &nbsp;
+        </div>
+    </div>
+    <div class="categories-wrapper">
+        <h3>
+            <RouterLink class="links" :to="'/categories/public/'">Public Listings</RouterLink>
+        </h3>
+        <h3>
+            <RouterLink class="links" :to="'/categories/private/'">Private Listings</RouterLink>
+        </h3>        
+    </div>
 </template>
