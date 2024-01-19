@@ -51,7 +51,7 @@ const checkSession = () => {
 </script>
 
 <template>
-  <h1>My Listings</h1>
+  <h1 class="page-title">my listings</h1>
   <div class="grid-wrapper-mylistings">
     <div v-for="listing in listingsBe" :key="listing._id">
       <RouterLink :to="'/listings/' + listing._id">

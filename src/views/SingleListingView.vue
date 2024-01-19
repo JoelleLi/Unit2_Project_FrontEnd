@@ -103,17 +103,19 @@ const checkPublicOrPrivate = () => {
 </script>
 
 <template>
-    <h1>{{ listing.name }}</h1>
-    <h4>{{ listing.city }}</h4>
-    <h5 v-if="isPublic">Public Listing</h5>
-    <h5 v-if="isPrivate">Private Listing</h5>
+    <h1 class="listingname">{{ listing.name }}</h1>
+    <h4 id="city">{{ listing.city }}</h4>
+    <div id="primary-image-wrapper">
+        <img id="primary-image" v-if="listingImage" :src="listing.image" :alt="listingImage" width="300px">
+    </div>
+    <h5 class="publicprivatelisting" v-if="isPublic">Public Listing</h5>
+    <h5 class="publicprivatelisting" v-if="isPrivate">Private Listing</h5>
     <h6>{{ listing.description }}</h6>
-    <h6>{{ listing.telephone }}</h6>
-    <h6>{{ listing.emailAddress }}</h6>
-
-    <img v-if="listingImage" :src="listing.image" :alt="listingImage" width="300px">
+    <h6>contact:</h6>
+    <h6>phone: {{ listing.telephone }}</h6>
+    <h6>email: {{ listing.emailAddress }}</h6>
     <div class="galleryWrapper">
-    <h3>Image Gallery</h3>
+    <h3 class="image-gallery-header">Image Gallery</h3>
         <div class="imageGallery">
             <div v-for="(image, index) in listing.images" :key="index">
                 <img :src="image" :alt="`Image ${index + 1}`" width="300px">

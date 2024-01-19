@@ -24,7 +24,7 @@ const checkSession = () => {
     myListingsLink.classList = "nav-link"
 
     const logOutLink = document.getElementById("login")
-    logOutLink.innerText = "Log out"
+    logOutLink.innerText = "log out"
     console.log(logOutLink)
    }
 }
@@ -43,29 +43,31 @@ onMounted(checkSession)
 
 <div class="container">
   <div class="row" id="header-bar">
-    <div class="col-2">
-      <h1 id="icon">shoot tracker</h1>    
-    </div>
     <div class="col-10" id="login-link">
-      <RouterLink to="/login" id="login">Login</RouterLink>
+      <RouterLink to="/login" id="login">login</RouterLink>
     </div>
   </div>
   <div class="row">
     <div class="col-md-2" id="nav-wrapper">
-      <nav class="navbar flex-column">
+      <div class="nav-wrapper2">
+        <div id="icon-wrapper" class="col-2">
+        <img id="icon" src="./assets/images/shootfinder.png" alt="shootfinder logo">
+      </div>
+        <nav class="navbar flex-column">
         <a class="nav-link">
-          <RouterLink to="/" class="nav-text">Home</RouterLink>
+          <RouterLink to="/" class="nav-text">home</RouterLink>
         </a> 
         <a class="nav-link">
-          <RouterLink to="/categories" class="nav-text">Categories</RouterLink>
+          <RouterLink to="/categories" class="nav-text">categories</RouterLink>
         </a> 
         <a class="nav-link">
-          <RouterLink to="/listings" class="nav-text">All Listings</RouterLink>
+          <RouterLink to="/listings" class="nav-text">all listings</RouterLink>
         </a> 
         <a class="nav-link disabled" id="mylistings-link">
-          <RouterLink to="/mylistings" class="nav-text">My Listings</RouterLink>
+          <RouterLink to="/mylistings" class="nav-text">my listings</RouterLink>
         </a> 
-      </nav>    
+      </nav> 
+      </div>
     </div>
     <div class="col-md-10" id="main-content-wrapper">
       <RouterView />
