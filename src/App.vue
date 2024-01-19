@@ -43,48 +43,43 @@ onMounted(checkSession)
 
 <div class="container">
   <div class="row" id="header-bar">
-    <div class="col-10" id="login-link">
-      <RouterLink to="/login" id="login">login</RouterLink>
-    </div>
   </div>
   <div class="row">
     <div class="col-md-2" id="nav-wrapper">
       <div class="nav-wrapper2">
         <div id="icon-wrapper" class="col-2">
-        <img id="icon" src="./assets/images/shootfinder.png" alt="shootfinder logo">
-      </div>
+          <img id="icon" src="./assets/images/shootfinder.png" alt="shootfinder logo">
+        </div>
         <nav class="navbar flex-column">
-        <a class="nav-link">
-          <RouterLink to="/" class="nav-text">home</RouterLink>
-        </a> 
-        <a class="nav-link">
-          <RouterLink to="/categories" class="nav-text">categories</RouterLink>
-        </a> 
-        <a class="nav-link">
-          <RouterLink to="/listings" class="nav-text">all listings</RouterLink>
-        </a> 
-        <a class="nav-link" id="mylistings-link">
-          <RouterLink to="/mylistings" class="nav-text">my listings</RouterLink>
-        </a> 
-        <a class="nav-link" id="newlisting-link">
-          <RouterLink to="/newlisting" class="nav-text">new listing</RouterLink>
-        </a> 
-      </nav> 
+          <a class="nav-link">
+            <RouterLink to="/" class="nav-text">home</RouterLink>
+          </a> 
+          <a class="nav-link">
+            <RouterLink to="/categories" class="nav-text">categories</RouterLink>
+          </a> 
+          <a class="nav-link">
+            <RouterLink to="/listings" class="nav-text">all listings</RouterLink>
+          </a> 
+          <a class="nav-link" id="mylistings-link">
+            <RouterLink to="/mylistings" class="nav-text">my listings</RouterLink>
+          </a> 
+          <a class="nav-link" id="newlisting-link">
+            <RouterLink to="/newlisting" class="nav-text">new listing</RouterLink>
+          </a> 
+        </nav> 
       </div>
     </div>
-    <div class="col-md-10" id="main-content-wrapper">
-      <div class="row" id="header-bar-2">
-        <div class="col-12">
-          <h1>header</h1>
-        </div>
+    <div class="col-md-10 d-flex flex-column" id="main-content-wrapper">
+      <div class="w-100 d-block" id="header-bar-wrapper">
+        <RouterLink to="/login" id="login">login</RouterLink>
       </div>
-      
-      <RouterView />
+      <div>
+          <RouterView />
+      </div>
     </div>
   </div>
 </div>
     <div class="wrapper">
-
     </div>
 </header>
 </template>
