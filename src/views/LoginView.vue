@@ -57,7 +57,7 @@ const handleLogout = async () => {
 
 
     // Reload the page to reset the application state
-    window.location.reload()
+    router.push("/")
 }
 
 onMounted(checkSession)
