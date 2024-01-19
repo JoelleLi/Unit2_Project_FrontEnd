@@ -10,7 +10,8 @@ a {
 }
 
 .button {
-  border-radius: 10px;
+  /* border-radius: 10px !important; */
+  color: black;
 }
 
 .button:hover {
@@ -300,6 +301,22 @@ a {
   justify-content: center;
   grid-gap: 10px;
   margin: 50px;
+}
+
+#editlink {
+  color: black;
+}
+
+#editlink:hover {
+  color: pink;
+}
+
+#button-wrapper {
+  margin-bottom: 20px;
+}
+
+iframe {
+  margin-top: 20px;
 }
 
 /*---------- CATEGORIES VIEW ----------*/

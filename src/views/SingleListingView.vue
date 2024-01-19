@@ -142,7 +142,7 @@ const checkPublicOrPrivate = () => {
         </div>
         <div v-if="isLoggedIn">
             <h3>
-                <RouterLink :to="'/listings/' + listing._id + '/photos/'">Add Photos of Your Shoots</RouterLink> &nbsp; 
+                <RouterLink id="editlink" :to="'/listings/' + listing._id + '/photos/'">Add Photos of Your Shoots</RouterLink> &nbsp; 
             </h3>
         </div>
         <div>
