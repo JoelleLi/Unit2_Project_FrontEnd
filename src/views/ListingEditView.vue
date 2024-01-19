@@ -74,7 +74,7 @@ function deletePhotos(groupIndex) {
         fetchData()
     })
     .then(() => {
-        router.replace({ name: `editlisting` })
+        router.replace("/mylistings")
     })
     .then(() => {
         window.location.reload()
