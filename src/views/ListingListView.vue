@@ -24,12 +24,12 @@ const checkSession = () => {
     isLoggedIn.value = true
     const userData = decodeCredential(cookies.get("user_session"))
     userName = userData.given_name
-    console.log(userData)
+    // console.log(userData)
 
-    console.log(userData.email)
+    // console.log(userData.email)
     userEmail.value = userData.email
 
-   }
+  }
 }
 
 onMounted(() => {

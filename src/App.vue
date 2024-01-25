@@ -1,13 +1,53 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import { ref, onMounted } from "vue"
+import { RouterLink, RouterView, useRouter } from 'vue-router'
+import { ref, onMounted, computed } from "vue"
 import { useCookies } from "vue3-cookies"
 import { decodeCredential } from "vue3-google-login"
 const { cookies } = useCookies()
 
+const router = useRouter()
 const isLoggedIn = ref(false)
 let userName = ""
 const userEmail = ref("")
+const listingsBe = ref([])
+const inputText = ref("")
+// const filteredListings = [""]
+const searchTerm = ref('')
+
+
+const fetchData = async () => {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/listings`);
+        const result = await response.json();
+        listingsBe.value = result;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
+}
+
+// const submitForm = async () => {
+//   // console.log("form submitted")
+//   // console.log("Search term:", inputText.value)
+
+//   await fetchData()
+
+//   // console.log(listingsBe.value)
+
+//   const filteredListings = listingsBe.value.filter(listing => {
+//     return listing.name.toLowerCase().includes(inputText.value.toLowerCase())
+//   })
+
+//   console.log("Filtered Listings:", filteredListings)
+//   // router.push({ name: "searchresults" , params : { filteredList : filteredListings } })
+// }
+
+const filteredListings = computed(() => {
+  console.log("running")
+  const newList = listingsBe.value.filter(listing => 
+  listing.name.toLowerCase().includes(searchTerm.value.toLowerCase()))
+  console.log(newList)
+  return newList
+})
 
 const checkSession = () => {
   if( cookies.isKey("user_session") ) {
@@ -28,7 +68,7 @@ const checkSession = () => {
    }
 }
 
-onMounted(checkSession)
+onMounted(checkSession, fetchData)
 
 </script>
 
@@ -39,7 +79,7 @@ onMounted(checkSession)
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
 <header>
-
+  
 <div class="container">
   <div class="row" id="header-bar">
   </div>
@@ -56,6 +96,9 @@ onMounted(checkSession)
             <RouterLink to="/" class="nav-text">Home</RouterLink>
           </a> 
           <a class="nav-link">
+            <RouterLink to="/searchpage" class="nav-text">Search</RouterLink>
+          </a> 
+          <a class="nav-link">
             <RouterLink to="/categories" class="nav-text">Categories</RouterLink>
           </a> 
           <a class="nav-link">
@@ -65,24 +108,33 @@ onMounted(checkSession)
             <RouterLink to="/mylistings" class="nav-text">My Listings</RouterLink>
           </a> 
           <a class="nav-link" id="newlisting-link">
-            <RouterLink to="/newlisting" class="nav-text">New Listing</RouterLink>
+            <RouterLink to="/newlisting" class="nav-text">Add Listing</RouterLink>
           </a> 
+
         </nav> 
       </div>
     </div>
     <div class="col-md-10 d-flex flex-column" id="main-content-wrapper">
+
       <div class="w-100 d-block" id="header-bar-wrapper">
-        <RouterLink to="/login" class="links" id="login">Login</RouterLink>
-        <!-- <div id="hello">Hello, {{ userName }}</div> -->
+
+        <!-- <form @submit.prevent="submitForm">
+          <input v-model="inputText" type="text" placeholder="Search">
+          <input type="submit" name="" id="">
+        </form> -->
+
+
+
+        <!-- <RouterLink to="/login" class="links" id="login">Login</RouterLink> -->
+
       </div>
+
       <div>
           <RouterView />
       </div>
     </div>
   </div>
 </div>
-    <div class="wrapper">
-    </div>
 </header>
 </template>
 

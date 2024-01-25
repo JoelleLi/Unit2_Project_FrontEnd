@@ -11,6 +11,8 @@ import AddPhotosView from "@/views/AddPhotosView.vue"
 import PublicListingsView from "@/views/PublicListingsView.vue"
 import PrivateListingsView from "@/views/PrivateListingsView.vue"
 import NewListingView from "@/views/NewListingView.vue"
+import SearchResultsView from "@/views/SearchResultsView.vue"
+import SearchPageView from "@/views/SearchPageView.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -71,9 +73,20 @@ const router = createRouter({
       component: NewListingView
     },
     {
+      path: '/search-results',
+      name: 'searchresults',
+      props: true,
+      component: SearchResultsView
+    },
+    {
       path: "/login",
       name: "login",
       component: LoginView
+    },
+    {
+      path: "/searchpage",
+      name: "searchpage",
+      component: SearchPageView
     }
   ]
 })

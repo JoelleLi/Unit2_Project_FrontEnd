@@ -54,4 +54,7 @@ const uniqueCities = computed(() => {
             <RouterLink class="links" :to="'/categories/private/'">Private Listings</RouterLink>
         </h3>        
     </div>
+
+
+    
 </template>
