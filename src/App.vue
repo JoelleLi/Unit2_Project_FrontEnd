@@ -73,18 +73,14 @@ onMounted(checkSession, fetchData)
 </script>
 
 <template>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<link rel="stylesheet" href="./assets/main.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100;1,100&display=swap" rel="stylesheet">
 <header>
   
 <div class="container">
-  <div class="row" id="header-bar">
-  </div>
   <div class="row">
-    <div class="col-md-2" id="nav-wrapper">
+    <div class="col-md-2">
       <div class="nav-wrapper2">
         <div id="icon-wrapper" class="col-2">
           <img id="icon" src="./assets/images/shootfinder.png" alt="shootfinder logo">
@@ -110,28 +106,21 @@ onMounted(checkSession, fetchData)
           <a class="nav-link" id="newlisting-link">
             <RouterLink to="/newlisting" class="nav-text">Add Listing</RouterLink>
           </a> 
-
         </nav> 
+        <div class="login-wrapper">
+          <RouterLink to="/login" class="links" id="login">Login</RouterLink>
+        </div>
       </div>
     </div>
     <div class="col-md-10 d-flex flex-column" id="main-content-wrapper">
-
-      <div class="w-100 d-block" id="header-bar-wrapper">
-
-        <!-- <form @submit.prevent="submitForm">
-          <input v-model="inputText" type="text" placeholder="Search">
-          <input type="submit" name="" id="">
-        </form> -->
-
-
-
-        <!-- <RouterLink to="/login" class="links" id="login">Login</RouterLink> -->
-
+      <div class=row id="header-bar">
+        <div class="header-sq col">studios</div>
+        <div class="header-sq col">public</div>
+        <div class="header-sq col">private</div>
+        <div class="header-sq col">nature</div>
+        <div class="header-sq col">urban</div>
       </div>
-
-      <div>
-          <RouterView />
-      </div>
+        <RouterView />
     </div>
   </div>
 </div>

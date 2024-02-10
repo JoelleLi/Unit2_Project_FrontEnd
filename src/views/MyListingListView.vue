@@ -56,7 +56,7 @@ const checkSession = () => {
 <template>
   <div v-if="!isLoggedIn">Sign in to view your listings</div>
   <div class="mylistings-wrapper">
-    <h3>My Listings</h3>
+    <p class="title">My Listings</p>
     <div v-if="isLoggedIn" class="grid-wrapper-mylistings">
       <div v-for="listing in listingsBe" :key="listing._id">
         <RouterLink :to="'/listings/' + listing._id">

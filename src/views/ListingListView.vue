@@ -40,8 +40,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="mainlistings-wrapper">
-    <h3>All Listings</h3>
+  <div class="row mainlistings-wrapper">
+    <p class="title">All Listings</p>
     <div class="grid-wrapper-mainlistings">
       <div v-for="listing in listingsBe" :key="listing._id">
         <RouterLink :to="'/listings/' + listing._id">
