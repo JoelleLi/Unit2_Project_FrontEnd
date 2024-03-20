@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue"
 import { RouterLink } from "vue-router"
 import NewListing from "@/components/NewListing.vue"
+import LoginMessage from "@/components/LoginMessage.vue"
 import { useCookies } from "vue3-cookies"
 import { decodeCredential } from "vue3-google-login"
 const { cookies } = useCookies()
@@ -40,6 +41,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <LoginMessage />
   <div class="row mainlistings-wrapper">
     <p class="title">All Listings</p>
     <div class="grid-wrapper-mainlistings">

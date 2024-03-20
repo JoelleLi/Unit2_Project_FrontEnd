@@ -97,9 +97,9 @@ onMounted(checkSession, fetchData)
           <a class="nav-link">
             <RouterLink to="/categories" class="nav-text">Categories</RouterLink>
           </a> 
-          <a class="nav-link">
+          <!-- <a class="nav-link">
             <RouterLink to="/listings" class="nav-text">All Listings</RouterLink>
-          </a> 
+          </a>  -->
           <a class="nav-link" id="mylistings-link">
             <RouterLink to="/mylistings" class="nav-text">My Listings</RouterLink>
           </a> 

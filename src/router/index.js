@@ -20,13 +20,13 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/listings',
-      name: 'listings',
       component: ListingListView
     },
+    // {
+    //   path: '/listings',
+    //   name: 'listings',
+    //   component: ListingListView
+    // },
     {
       path: '/listings/:id',
       name: 'singlelisting',

@@ -24,7 +24,9 @@
 /*---------- MAIN WRAPPER ----------*/
 body {
   background-color: rgba(133, 176, 190, 0.16) !important;
-  font-family: 'Noto Serif', serif;  
+  font-family: Helvetica Neue, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.43;
   text-decoration: none !important;
 }
 
