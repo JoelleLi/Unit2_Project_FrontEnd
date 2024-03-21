@@ -34,6 +34,15 @@ This is my first experience creating a full stack application using MongoDB, Exp
 
 [GitHub Back End](https://github.com/JoelleLi/Unit2_Project_BackEnd)
 
+Clone / download the repo.
+
+In terminal, run the following commands:
+
++ Install dependencies ```npm i```
++ Start back-end server using ```nodemon```
++ Navigate into front-end folder ```cd frontend```
++ Run the front-end server using ```npm run dev```
+
 ## Timeframe & Working Team
 
 Timeframe was one week independently.
