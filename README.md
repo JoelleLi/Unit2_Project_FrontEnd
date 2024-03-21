@@ -1,4 +1,4 @@
-# Project Three - Shoot Finder
+# Project Two - Shoot Finder
 Table of Contents:
 + Project Overview
 + Deployment Link
