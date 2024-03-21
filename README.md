@@ -18,6 +18,8 @@ Table of Contents:
 
 ### Project 2: Shoot Finder
 
+![Screenshot of desktop view of UI.](./assets/readme00.png)
+
 Shoot Finder is an online community where users can view and post their own private photoshoot locations, as well as flag public / nature locations. 
 
 Users can add examples of their own photoshoot images to a guest image gallery for each listing, as well as search for listings by keywords, location and category.
