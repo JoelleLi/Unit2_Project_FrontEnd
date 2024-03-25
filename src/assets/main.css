@@ -1,6 +1,7 @@
+
 #header-bar {
   align-items: center;
-  background-color: pink;
+  background-color: ;
   border-radius: 30px;
   display: flex;
   top: 0px;
@@ -103,32 +104,16 @@ a {
   overflow-x:hidden;
 }
 
-.navbar {
-  background-color: powderblue;
-  border-radius: 30px;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  /* display: flex; */
-  height: 350px;
-  width: 150px;
-  /* padding: 100px; */
-}
+
 
 .navbar a:hover {
   color: #064579;
 }
 
 .nav-link {
-  margin: 10px;
+  margin: 5px;
 }
 
-.nav-text {
-  color: black;
-  font-size: 20px;
-}
-
-.nav-text:hover {
-  text-decoration: pink underline !important;
-}
 #header-bar-wrapper {
   margin-top: 100px;
   align-items: center;
@@ -228,6 +213,7 @@ a {
 .listing-image {
   border-radius: 20px;
   display: flex;
+  background-size: cover;
   margin: 0 auto;
 }
 

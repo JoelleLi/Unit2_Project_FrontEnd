@@ -61,7 +61,7 @@ onMounted(() => {
                 <RouterLink :to="'/listings/' + listing._id">
                     <div class="listing-container">
                         <div class="listing-image-wrapper">
-                            <img class="listing-image" :src="listing.image" :alt="listing.name + ' Image'" width="200" />
+                            <img class="listing-image" :src="listing.image" :alt="listing.name + ' Image'" width="200" height="130px" />
                         </div>
                         <div class="listing-details">
                             <span class="listing-details">

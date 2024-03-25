@@ -83,30 +83,35 @@ onMounted(checkSession, fetchData)
     <div class="col-md-2">
       <div class="nav-wrapper2">
         <div id="icon-wrapper" class="col-2">
-          <!-- <img id="icon" src="./assets/images/shootfinder.png" alt="shootfinder logo"> -->
-          <img src="./assets/images/shootfindericon.png" alt="shootfinder icon"
-          width="100px">
+          <RouterLink to="/">
+            <img src="./assets/images/textLogo01.png" alt="shootfinder icon"
+            width="100px">
+        </RouterLink>
         </div>
-        <nav class="navbar flex-column">
-          <!-- <a class="nav-link">
-            <RouterLink to="/" class="nav-text">Home</RouterLink>
-          </a>  -->
-          <a class="nav-link">
-            <RouterLink to="/" class="nav-text">Home</RouterLink>
-          </a> 
-          <a class="nav-link">
-            <RouterLink to="/categories" class="nav-text">Categories</RouterLink>
-          </a> 
-          <!-- <a class="nav-link">
-            <RouterLink to="/listings" class="nav-text">All Listings</RouterLink>
-          </a>  -->
-          <a class="nav-link" id="mylistings-link">
-            <RouterLink to="/mylistings" class="nav-text">My Listings</RouterLink>
-          </a> 
-          <a class="nav-link" id="newlisting-link">
-            <RouterLink to="/newlisting" class="nav-text">Add Listing</RouterLink>
-          </a> 
-        </nav> 
+
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page">
+              <RouterLink to="/" class="text-primary-emphasis">Home</RouterLink>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <RouterLink to="/categories" class="text-primary-emphasis">Categories</RouterLink>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <RouterLink to="/mylistings" class="text-primary-emphasis">My Listings</RouterLink>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <RouterLink to="/newlisting" class="text-primary-emphasis">Add Listing</RouterLink>
+            </a>
+          </li>
+        </ul>
+
         <div class="login-wrapper">
           <RouterLink to="/login" class="links" id="login">Login</RouterLink>
         </div>

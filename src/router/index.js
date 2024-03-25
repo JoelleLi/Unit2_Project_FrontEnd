@@ -11,8 +11,8 @@ import AddPhotosView from "@/views/AddPhotosView.vue"
 import PublicListingsView from "@/views/PublicListingsView.vue"
 import PrivateListingsView from "@/views/PrivateListingsView.vue"
 import NewListingView from "@/views/NewListingView.vue"
-import SearchResultsView from "@/views/SearchResultsView.vue"
-import SearchPageView from "@/views/SearchPageView.vue"
+// import SearchResultsView from "@/views/SearchResultsView.vue"
+import HomePageView from "@/views/HomePageView.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -86,7 +86,7 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: SearchPageView
+      component: HomePageView
     }
   ]
 })
