@@ -83,7 +83,7 @@ onMounted(checkSession, fetchData)
     <div class="col-md-2">
       <div class="nav-wrapper2">
         <div id="icon-wrapper" class="col-2">
-          <img id="icon" src="./assets/images/shootfinder.png" alt="shootfinder logo">
+          <!-- <img id="icon" src="./assets/images/shootfinder.png" alt="shootfinder logo"> -->
           <img src="./assets/images/shootfindericon.png" alt="shootfinder icon"
           width="100px">
         </div>
@@ -92,7 +92,7 @@ onMounted(checkSession, fetchData)
             <RouterLink to="/" class="nav-text">Home</RouterLink>
           </a>  -->
           <a class="nav-link">
-            <RouterLink to="/searchpage" class="nav-text">Home</RouterLink>
+            <RouterLink to="/" class="nav-text">Home</RouterLink>
           </a> 
           <a class="nav-link">
             <RouterLink to="/categories" class="nav-text">Categories</RouterLink>

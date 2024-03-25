@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from "../views/HomeView.vue"
-import ListingListView from "../views/ListingListView.vue"
+// import HomeView from "../views/HomeView.vue"
+// import ListingListView from "../views/ListingListView.vue"
 import SingleListingView from "../views/SingleListingView.vue"
 import ListingEditView from "../views/ListingEditView.vue"
 import LoginView from "@/views/LoginView.vue"
@@ -17,11 +17,11 @@ import SearchPageView from "@/views/SearchPageView.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: ListingListView
-    },
+    // {
+    //   path: '/',
+    //   name: 'home',
+    //   component: ListingListView
+    // },
     // {
     //   path: '/listings',
     //   name: 'listings',
@@ -72,20 +72,20 @@ const router = createRouter({
       name: 'newlisting',
       component: NewListingView
     },
-    {
-      path: '/search-results',
-      name: 'searchresults',
-      props: true,
-      component: SearchResultsView
-    },
+    // {
+    //   path: '/',
+    //   name: 'home',
+    //   props: true,
+    //   component: SearchResultsView
+    // },
     {
       path: "/login",
       name: "login",
       component: LoginView
     },
     {
-      path: "/searchpage",
-      name: "searchpage",
+      path: "/",
+      name: "home",
       component: SearchPageView
     }
   ]
