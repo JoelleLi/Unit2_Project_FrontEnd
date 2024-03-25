@@ -88,11 +88,11 @@ onMounted(checkSession, fetchData)
           width="100px">
         </div>
         <nav class="navbar flex-column">
-          <a class="nav-link">
+          <!-- <a class="nav-link">
             <RouterLink to="/" class="nav-text">Home</RouterLink>
-          </a> 
+          </a>  -->
           <a class="nav-link">
-            <RouterLink to="/searchpage" class="nav-text">Search</RouterLink>
+            <RouterLink to="/searchpage" class="nav-text">Home</RouterLink>
           </a> 
           <a class="nav-link">
             <RouterLink to="/categories" class="nav-text">Categories</RouterLink>

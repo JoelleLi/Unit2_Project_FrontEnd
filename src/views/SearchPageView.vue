@@ -1,8 +1,15 @@
 <script setup>
 import { ref, onMounted, computed } from "vue"
+import LoginMessage from "@/components/LoginMessage.vue"
+import { useCookies } from "vue3-cookies"
+import { decodeCredential } from "vue3-google-login"
+const { cookies } = useCookies()
 
 const listingsBe = ref([])
 const searchTerm = ref("")
+const isLoggedIn = ref(false)
+let userName = ""
+const userEmail = ref("")
 
 const fetchData = async () => {
     try {
@@ -22,14 +29,32 @@ const filteredListings = computed(() => {
   return newList
 })
 
-onMounted(fetchData)
+const checkSession = () => {
+  if( cookies.isKey("user_session") ) {
+    isLoggedIn.value = true
+    const userData = decodeCredential(cookies.get("user_session"))
+    userName = userData.given_name
+    // console.log(userData)
+
+    // console.log(userData.email)
+    userEmail.value = userData.email
+
+  }
+}
+
+onMounted(() => {
+  fetchData()
+  checkSession()
+})
 
 </script>
 
 <template>
+    <LoginMessage />
     <div class="mainlistings-wrapper">
-        <div class="search-bar">
-        <input type="text" v-model="searchTerm" placeholder="Search by name">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
+            <input type="text" v-model="searchTerm" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="grid-wrapper-mainlistings">
             <div v-for="listing in filteredListings" :key="listing._id">
