@@ -50,27 +50,25 @@ onMounted(() => {
 </script>
 
 <template>
-    <LoginMessage />
-    <div class="mainlistings-wrapper">
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
-            <input type="text" v-model="searchTerm" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-        </div>
-        <div class="grid-wrapper-mainlistings">
-            <div v-for="listing in filteredListings" :key="listing._id">
-                <RouterLink :to="'/listings/' + listing._id">
-                    <div class="listing-container">
-                        <div class="listing-image-wrapper">
-                            <img class="listing-image" :src="listing.image" :alt="listing.name + ' Image'" width="200" height="130px" />
-                        </div>
-                        <div class="listing-details">
-                            <span class="listing-details">
-                                {{ listing.name }}
-                            </span>
-                        </div>
+    <div v-if="!isLoggedIn">
+        <LoginMessage />
+    </div>
+    <div class="input-group mt-3 mb-3">
+        <span class="input-group-text text-primary-emphasis" id="inputGroup-sizing-default"  style="background-color: rgba(230, 233, 255, 0.8);">Search</span>
+        <input type="text" v-model="searchTerm" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    <div class="grid-wrapper-mainlistings mb-5">
+        <div v-for="listing in filteredListings" :key="listing._id">
+            <RouterLink :to="'/listings/' + listing._id">
+                <div class="card">
+                    <img :src="listing.image" class="card-img-top" :alt="listing.name">
+                    <div class="card-body">
+                        <p class="card-text text-primary-emphasis">{{ listing.name }}</p>
                     </div>
-                </RouterLink>
-            </div>
+                </div>
+            </RouterLink>
         </div>
-        </div>
+    </div>
+
 </template>

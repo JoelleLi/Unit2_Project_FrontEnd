@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue"
 import { RouterLink } from "vue-router"
 import NewListing from "@/components/NewListing.vue"
+import LoginMessage from "@/components/LoginMessage.vue"
 import { useCookies } from "vue3-cookies"
 import { decodeCredential } from "vue3-google-login"
 const { cookies } = useCookies()
@@ -54,24 +55,25 @@ const checkSession = () => {
 </script>
 
 <template>
-  <div v-if="!isLoggedIn">Sign in to view your listings</div>
-  <div class="mylistings-wrapper">
-    <p class="title">My Listings</p>
-    <div v-if="isLoggedIn" class="grid-wrapper-mylistings">
-      <div v-for="listing in listingsBe" :key="listing._id">
-        <RouterLink :to="'/listings/' + listing._id">
-          <div class="listing-container">
-            <div class="listing-image-wrapper">
-              <img class="listing-image" :src="listing.image" :alt="listing.name + ' Image'" width="250" height="250" />
-            </div>
-            <div>
-              <span class="listing-details-mylistings">{{ listing.name }}</span>
-            </div>
+  <div v-if="!isLoggedIn">
+    <LoginMessage />
+  </div>
+  <RouterLink to="/newlisting" class="text-primary-emphasis">
+    <span class="badge rounded-pill text-bg-success mt-4 mb-3 addListing">+ Add New Listing</span>
+  </RouterLink>
+  <h4 class="mb-3">My Listings</h4>
+
+  <div v-if="isLoggedIn" class="grid-wrapper-mainlistings">
+    <div v-for="listing in listingsBe" :key="listing._id">
+      <RouterLink :to="'/listings/' + listing._id">
+        <div class="card">
+          <img :src="listing.image" class="card-img-top" :alt="listing.name"/>
+          <div class="card-body">
+            <p class="card-text text-primary-emphasis">{{ listing.name }}</p>
           </div>
-        </RouterLink> &nbsp;
-      </div>
+        </div>
+      </RouterLink>
     </div>
   </div>
 
-  <hr>
-  <NewListing v-if="isLoggedIn" :fetchData="fetchData" :userEmail="userEmail"/></template>
+  </template>

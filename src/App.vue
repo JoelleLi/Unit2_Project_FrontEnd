@@ -68,7 +68,24 @@ const checkSession = () => {
    }
 }
 
-onMounted(checkSession, fetchData)
+onMounted(() => {
+    checkSession()
+    if (isLoggedIn.value === true) {
+      fetch(`${import.meta.env.VITE_API_URL}/listings/mylistings/${userEmail.value}`)
+
+      .then( response => response.json() )
+      .then( result => {
+        console.log(listingsBe.value)
+          listingsBe.value = result
+          console.log(userEmail.value)
+      })
+      .catch(err => console.error(err))
+    } else {
+      return
+    }
+})
+
+onMounted(fetchData)
 
 </script>
 
@@ -78,57 +95,42 @@ onMounted(checkSession, fetchData)
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100;1,100&display=swap" rel="stylesheet">
 <header>
   
-<div class="container">
-  <div class="row">
-    <div class="col-md-2">
-      <div class="nav-wrapper2">
-        <div id="icon-wrapper" class="col-2">
-          <RouterLink to="/">
-            <img src="./assets/images/textLogo01.png" alt="shootfinder icon"
-            width="100px">
+<div class="container ">
+  
+  <nav class="rounded navbar navbar-expand-lg mt-1 sticky-top" style="background-color: rgba(230, 233, 255, 0.9);">
+    <div class="container-fluid ">
+      <a class="navbar-brand" href="#">
+        <RouterLink to="/">
+          <img src="./assets/images/textLogo01.png" alt="shootfinder icon" id="logo">
         </RouterLink>
-        </div>
-
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page">
-              <RouterLink to="/" class="text-primary-emphasis">Home</RouterLink>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">
-              <RouterLink to="/categories" class="text-primary-emphasis">Categories</RouterLink>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">
-              <RouterLink to="/mylistings" class="text-primary-emphasis">My Listings</RouterLink>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">
-              <RouterLink to="/newlisting" class="text-primary-emphasis">Add Listing</RouterLink>
-            </a>
-          </li>
-        </ul>
-
-        <div class="login-wrapper">
-          <RouterLink to="/login" class="links" id="login">Login</RouterLink>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" aria-current="page">
+            <RouterLink to="/" class="text-primary-emphasis navLink">Home</RouterLink>
+          </a>
+          <a class="nav-link">
+            <RouterLink to="/categories" class="text-primary-emphasis navLink">Categories</RouterLink>
+          </a>
+          <a class="nav-link">
+            <RouterLink to="/mylistings" class="text-primary-emphasis navLink">My Listings</RouterLink>
+          </a>
+          <a class="nav-link">
+            <RouterLink to="/login" class="text-primary-emphasis navLink" id="login">
+              {{ isLoggedIn ? 'Log Out' : 'Login' }}
+            </RouterLink>          
+          </a>
         </div>
       </div>
     </div>
-    <div class="col-md-10 d-flex flex-column" id="main-content-wrapper">
-      <div class=row id="header-bar">
-        <div class="header-sq col">studios</div>
-        <div class="header-sq col">public</div>
-        <div class="header-sq col">private</div>
-        <div class="header-sq col">nature</div>
-        <div class="header-sq col">urban</div>
-      </div>
-        <RouterView />
-    </div>
-  </div>
+  </nav>
+
+  <RouterView />
 </div>
+
 </header>
 </template>
 

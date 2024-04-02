@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, computed } from "vue"
+import "./Categories.css"
 const listingsBe = ref([])
 
 const fetchData = () => {
@@ -19,7 +20,7 @@ const uniqueCities = computed(() => {
     listingsBe.value.forEach((listing) => {
         cities.add(listing.city)
     });
-    return Array.from(cities)
+    return Array.from(cities).sort()
 })
 
 // const listingsBe = ref([])
@@ -40,25 +41,33 @@ const uniqueCities = computed(() => {
 </script>
 
 <template>
-    <div class="public-categories-wrapper">
-        <div class="public-listing-wrapper">
-            <img class="publicimage" src="https://1.bp.blogspot.com/-RYrRBKA9Eng/X6Vl8XbbIUI/AAAAAAAACWs/FjWgOJxG8oMXtV6N3IiDDe1DFy44GCZXgCNcBGAsYHQ/w640-h426/Crisis%2BFarm%2B18.jpg" alt="graffiti wall in london">
-            <RouterLink class="links" :to="'/categories/public/'">Public Listings</RouterLink>
+
+    <div class="container">
+        <h4 class="mt-3 mb-3">Categories</h4>
+
+    <div class=" outerCatWrapper">
+        <div>
+            <RouterLink :to="'/categories/private/'">
+                <span class="badge rounded-pill text-bg-primary mb-1 catButton">Private Listings</span>
+            </RouterLink>
+        </div> &nbsp;
+
+        <div>
+            <RouterLink :to="'/categories/public/'">
+                <span class="badge rounded-pill text-bg-primary mb-1 catButton">Public Listings</span>
+            </RouterLink>
         </div>
-        <div class="public-listing-wrapper">
-            <img class="publicimage" src="https://cdn-v2.theculturetrip.com/1280x713/wp-content/uploads/2020/01/pt2pw5.webp" alt="graffiti wall in london">
-            <RouterLink class="links" :to="'/categories/private/'">Private Listings</RouterLink>
+
         </div>
-    </div>
-    <div class="categories-wrapper">
-        <p>Listings by City</p>
-        <div class="cities-wrapper">
+
+        <h4 class="mt-3 mb-3">Listings by City</h4>
+        <div class="outerCatWrapper">
             <div v-for="city in uniqueCities" :key="city">
-            <RouterLink class="links" :to="'/categories/city/' + encodeURIComponent(city)">{{ city }}</RouterLink> &nbsp;
+            <RouterLink class="links" :to="'/categories/city/' + encodeURIComponent(city)">
+                <span class="badge rounded-pill text-bg-light cityButton">{{ city }}</span>
+            </RouterLink> &nbsp;
             </div>
         </div>
     </div>
 
-
-    
 </template>

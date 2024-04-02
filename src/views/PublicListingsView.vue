@@ -19,18 +19,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <h3>Public Listings</h3>
-  <div class="grid-wrapper-mainlistings">
+  <h4 class="mt-3 mb-3">Public Listings</h4>
+  <div class="grid-wrapper-mainlistings mb-5">
     <div v-for="listing in listingsBe" :key="listing._id">
       <RouterLink :to="'/listings/' + listing._id">
-        <div class="listing-container">
-          <div class="listing-image-wrapper">
-            <img class="listing-image" :src="listing.image" :alt="listing.name + ' Image'" width="200" />
-          </div>
-          <div class="listing-details">
-            <span class="listing-details">
-              {{ listing.name }}
-            </span>
+        <div class="card">
+          <img :src="listing.image" class="card-img-top" :alt="listing.name">
+          <div class="card-body">
+              <p class="card-text text-primary-emphasis">{{ listing.name }}</p>
           </div>
         </div>
       </RouterLink> &nbsp;

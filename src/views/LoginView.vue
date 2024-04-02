@@ -3,6 +3,7 @@ import router from "@/router";
 import { ref, onMounted } from "vue"
 import { useCookies } from "vue3-cookies"
 import { decodeCredential, googleLogout } from "vue3-google-login"
+import LoginMessage from "@/components/LoginMessage.vue"
 
 const { cookies } = useCookies()
 
@@ -30,8 +31,8 @@ const callback =  (response) => {
     })
     .then(() => {
         console.log("session saved")
-        // window.location.reload()
-        router.push("/login")
+        window.location.reload()
+        // router.push("/login")
 
     })
     .catch( err => console.error(err) )
@@ -42,7 +43,8 @@ const checkSession = () => {
         isLoggedIn.value = true
         const userData = decodeCredential(cookies.get("user_session"))
         userName = userData.given_name
-        const loginText = document.getElementById("loginText")
+        const loginText = document.getElementById("login")
+
         loginText.innerText = "Log Out"
     }
 }
@@ -57,7 +59,6 @@ const handleLogout = async () => {
     cookies.remove("user_session")
     isLoggedIn.value = false
     const loginHeader = document.getElementById("login")
-    console.log(loginHeader)
     // Reload the page to reset the application state
     router.push("/")
     loginHeader.innerText = "Log In"
@@ -69,11 +70,14 @@ onMounted(checkSession)
 
 <template>
     <div class="login-page">
-        <h3 id="loginText">Login</h3>
-    <div v-if="isLoggedIn">
+
+    <div v-if="!isLoggedIn">
+        <LoginMessage />
+    </div>
+
+    <div v-if="isLoggedIn" class="mt-3">
         <h4>Hello, {{ userName }}</h4>
-        <a href="/newlisting">Start listing my locations</a>
-        <br>
+        <hr>
         <button class="button" @click="handleLogout">Log Out</button>
     </div>
     <div v-else>

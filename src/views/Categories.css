@@ -1,0 +1,31 @@
+.catWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.outerCatWrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.catWrapper:hover .catButton {
+    background-color: navy !important;
+}
+
+.cityButton:hover {
+    background-color: pink !important;
+}
+
+@media only screen and (min-width: 400px) {
+
+}
+
+@media only screen and (min-width: 450px) {
+
+}
+
+@media only screen and (min-width: 1200px) {
+    .catImage {
+        width: 550px;
+    }
+}
