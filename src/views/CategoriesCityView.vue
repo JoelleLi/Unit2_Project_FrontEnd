@@ -2,8 +2,6 @@
 import { ref, onMounted } from "vue"
 import { useRoute } from "vue-router"
 const route = useRoute()
-console.log(route.params)
-
 const listingsBe = ref([])
 const myCity = route.params.city
 
@@ -13,7 +11,6 @@ onMounted(() => {
     .then( response => response.json() )
     .then( result => {
         listingsBe.value = result
-        console.log(listingsBe.value)
     })
     .catch(err => console.error(err))
 })
@@ -25,10 +22,10 @@ onMounted(() => {
     <div class="grid-wrapper-mainlistings">
         <div v-for="listing in listingsBe" :key="listing._id">
             <RouterLink :to="'/listings/' + listing._id">
-                <div class="card">
+                <div class="card border-0">
                     <img :src="listing.image" class="card-img-top" :alt="listing.name">
                     <div class="card-body">
-                        <p class="card-text text-primary-emphasis">{{ listing.name }}</p>
+                        <p class="card-text">{{ listing.name }}</p>
                     </div>
                 </div>
             </RouterLink> &nbsp;

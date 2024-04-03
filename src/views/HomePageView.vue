@@ -22,10 +22,8 @@ const fetchData = async () => {
 }
 
 const filteredListings = computed(() => {
-  console.log("running")
   const newList = listingsBe.value.filter(listing => 
   listing.name.toLowerCase().includes(searchTerm.value.toLowerCase()))
-  console.log(newList)
   return newList
 })
 
@@ -61,10 +59,10 @@ onMounted(() => {
     <div class="grid-wrapper-mainlistings mb-5">
         <div v-for="listing in filteredListings" :key="listing._id">
             <RouterLink :to="'/listings/' + listing._id">
-                <div class="card">
+                <div class="card border-0">
                     <img :src="listing.image" class="card-img-top" :alt="listing.name">
                     <div class="card-body">
-                        <p class="card-text text-primary-emphasis">{{ listing.name }}</p>
+                        <p class="card-text">{{ listing.name }}</p>
                     </div>
                 </div>
             </RouterLink>

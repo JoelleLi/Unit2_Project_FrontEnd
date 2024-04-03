@@ -87,9 +87,6 @@ const checkSession = () => {
     // isLoggedIn.value = true
     const userData = decodeCredential(cookies.get("user_session"))
     userName = userData.given_name
-    console.log(userData)
-
-    console.log(userData.email)
 
     userEmail.value = userData.email
    }
@@ -98,18 +95,27 @@ const checkSession = () => {
 </script>
 
 <template>
-    <h3>Add your photos for {{ listing.name }}</h3>
-    <div class="listingForm">
+    <h5 class="mt-3 mb-3">Add your photos for <strong>{{ listing.name }}</strong></h5>
 
-        <div class="image-form">
-            <label for="images">Images URLs *</label>
-            <div v-for="(photo, index) in photos.photos" :key="index">
-                <input type="text" :name="'image-' + index" v-model="photos.photos[index]" placeholder="Image URL" required>
-                <button type="button" @click="removeImage(index)">Remove</button>
-            </div>
-            <button type="button" @click="addImage">Add Image</button>
+
+    <label  class="form-label" for="images">Image URLs *</label>
+
+    <div v-for="(photo, index) in photos.photos" :key="index" class="row g-3 mb-1">
+        <div class="col-auto">
+            <input type="text" :name="'image-' + index" v-model="photos.photos[index]" 
+            class="form-control" placeholder="Image URL" required>
+        </div>
+        <div class="col-auto">
+            <button type="button" @click="removeImage(index)" class="btn btn-light"
+            >Remove</button>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-light" type="button" @click="addImage">Add Image</button>
         </div>
 
-    <button @click="addPhotos">Add Photos</button>
+
     </div>
+
+    <button class="btn btn-primary mt-3 mb-5" @click="addPhotos">Add Photos</button>
+    
 </template>

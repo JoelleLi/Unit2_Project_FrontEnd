@@ -78,7 +78,9 @@ onMounted(checkSession)
     <div v-if="isLoggedIn" class="mt-3">
         <h4>Hello, {{ userName }}</h4>
         <hr>
-        <button class="button" @click="handleLogout">Log Out</button>
+        <button type="button" class="btn logButton" @click="handleLogout">Log Out</button>
+
+
     </div>
     <div v-else>
         <GoogleLogin :callback="callback" />

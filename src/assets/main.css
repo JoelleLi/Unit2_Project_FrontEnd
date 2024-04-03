@@ -7,6 +7,19 @@ a {
   text-decoration: none;
 }
 
+.card-text {
+  font-size: 13px;
+}
+.card-text {
+  height: 50px;
+}
+
+.logButton {
+  background-color: white;
+  border-color: rgba(0,99,190,255) !important;
+  color: rgba(0,99,190,255) !important;
+}
+
 .addListing:hover {
   background-color: rgba(0,99,190,255) !important;
 }
@@ -36,6 +49,19 @@ a {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+  .card-img-top {
+    height: 180px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .grid-wrapper-mainlistings {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .card-img-top {
+    height: 200px;
+  }
 }
 
 @media only screen and (min-width: 900px) {
@@ -49,12 +75,23 @@ a {
   .grid-wrapper-mainlistings {
     grid-template-columns: repeat(3, 1fr);
   }
+  .card-img-top {
+    height: 150px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .card-img-top {
+    height: 180px;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
   .grid-wrapper-mainlistings {
     grid-template-columns: repeat(4, 1fr);
-    
+  }
+  .card-img-top {
+    height: 200px;
   }
 }
 

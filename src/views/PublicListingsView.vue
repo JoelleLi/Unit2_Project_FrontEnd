@@ -23,7 +23,7 @@ onMounted(() => {
   <div class="grid-wrapper-mainlistings mb-5">
     <div v-for="listing in listingsBe" :key="listing._id">
       <RouterLink :to="'/listings/' + listing._id">
-        <div class="card">
+        <div class="card border-0">
           <img :src="listing.image" class="card-img-top" :alt="listing.name">
           <div class="card-body">
               <p class="card-text text-primary-emphasis">{{ listing.name }}</p>

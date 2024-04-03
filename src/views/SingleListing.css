@@ -1,0 +1,20 @@
+#userImages {
+    gap: 5px;
+}
+
+iframe {
+    width: 350px;
+}
+
+@media only screen and (min-width: 700px) {
+    iframe {
+        width: 600px;
+    }
+}
+  
+@media only screen and (min-width: 1200px) {
+    iframe {
+        height: 200px;
+        width: 1000px;
+    }
+}

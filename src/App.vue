@@ -54,9 +54,6 @@ const checkSession = () => {
     isLoggedIn.value = true
     const userData = decodeCredential(cookies.get("user_session"))
     userName = userData.given_name
-    console.log(userData)
-
-    console.log(userData.email)
 
     userEmail.value = userData.email
 
@@ -75,9 +72,7 @@ onMounted(() => {
 
       .then( response => response.json() )
       .then( result => {
-        console.log(listingsBe.value)
           listingsBe.value = result
-          console.log(userEmail.value)
       })
       .catch(err => console.error(err))
     } else {

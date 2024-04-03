@@ -19,9 +19,7 @@ onMounted(() => {
 
       .then( response => response.json() )
       .then( result => {
-        console.log(listingsBe.value)
-          listingsBe.value = result
-          console.log(userEmail.value)
+        listingsBe.value = result
       })
       .catch(err => console.error(err))
     } else {
@@ -44,9 +42,7 @@ const checkSession = () => {
     isLoggedIn.value = true
     const userData = decodeCredential(cookies.get("user_session"))
     userName = userData.given_name
-    console.log(userData)
 
-    console.log(userData.email)
 
     userEmail.value = userData.email
    }
@@ -57,19 +53,28 @@ const checkSession = () => {
 <template>
   <div v-if="!isLoggedIn">
     <LoginMessage />
+    <hr>
   </div>
   <RouterLink to="/newlisting" class="text-primary-emphasis">
-    <span class="badge rounded-pill text-bg-success mt-4 mb-3 addListing">+ Add New Listing</span>
+    <span class="badge rounded-pill text-bg-success mt-3 mb-3 addListing">+ Add New Listing</span>
   </RouterLink>
+
   <h4 class="mb-3">My Listings</h4>
+
+  <div v-if="!isLoggedIn">
+    <RouterLink to="/login" class="text-primary-emphasis">
+      Log in
+    </RouterLink>
+     to view your listings.
+  </div>
 
   <div v-if="isLoggedIn" class="grid-wrapper-mainlistings">
     <div v-for="listing in listingsBe" :key="listing._id">
       <RouterLink :to="'/listings/' + listing._id">
-        <div class="card">
+        <div class="card border-0">
           <img :src="listing.image" class="card-img-top" :alt="listing.name"/>
           <div class="card-body">
-            <p class="card-text text-primary-emphasis">{{ listing.name }}</p>
+            <p class="card-text">{{ listing.name }}</p>
           </div>
         </div>
       </RouterLink>
