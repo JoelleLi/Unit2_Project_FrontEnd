@@ -160,6 +160,8 @@ const checkPublicOrPrivate = () => {
 
         <h5 class="mt-1 mb-2">User Image Gallery</h5>
 
+        <div v-if="listing.photos < 1" class="mb-2">There are no user images for this location yet.</div>
+
         <!-- <div id="userImages" class="d-flex flex-wrap align-items-center">
             <div v-for="(image, index) in listing.images" :key="index" >
                 <img :src="image" :alt="`Image ${index + 1}`" class="img-fluid">
@@ -171,7 +173,7 @@ const checkPublicOrPrivate = () => {
             </RouterLink> &nbsp; 
         </div>
 
-        <div id="userImages" class="d-flex flex-wrap align-items-center justify-content-center">
+        <div id="userImages" class="d-flex flex-wrap align-items-center justify-content-center mb-5">
             <div v-for="(photoGroup, groupIndex) in listing.photos" :key="groupIndex">
                 <div v-for="(photo, photoIndex) in photoGroup.photos" :key="photoIndex">
                     <img :src="photo" :alt="`Photo ${groupIndex + 1}-${photoIndex + 1}`" width="300px">
